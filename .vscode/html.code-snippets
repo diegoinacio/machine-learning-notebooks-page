@@ -1,0 +1,41 @@
+{
+  "New section in navbar": {
+    "scope": "html",
+    "prefix": "Include",
+    "body": [
+      "<li><a href=\"#${1:section-id}\">${2:Section Title}</a></li>"
+    ]
+  },
+  "New section in body": {
+    "scope": "html",
+    "prefix": "Include",
+    "body": [
+      "<!-- ! Init Section -->",
+      "<!-- ? ${1:Section Title} -->",
+      "<section id=\"${2:section-id}\" class=\"main\">",
+      "  <header class=\"major\">",
+      "    <h2>${1:Section Title}</h2>",
+      "    <p>${3:Section description ..}</p>",
+      "  </header>",
+      "  <ul class=\"features\">",
+      "  </ul>",
+      "</section>",
+      "<!-- /! Finish Section -->"
+    ]
+  },
+  "New item in section": {
+    "scope": "html",
+    "prefix": "Include",
+    "body": [
+      "<!-- * Init item -->",
+      "<!-- ? ${1:Item Title} -->",
+      "<li>",
+      "  <img src=\"images/thumb_${2:item_filename}.jpg\" alt=\"${1:Item Title}\">",
+      "  <h3>${1:Item Title}</h3>",
+      "  <p>${3:Item description ..}</p>",
+      "  <a href=\"pages/${2:item_filename}.html\" target=\"_blank\" class=\"button primary fit\">view notebook</a>",
+      "</li>",
+      "<!-- /* Finish item -->"
+    ]
+  },
+}
