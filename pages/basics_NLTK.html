@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- ! custom meta tags -->
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <title>Basics [NLTK]</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Diego Inácio" />
+    <meta
+      property="og:url"
+      content="https://diegoinacio.github.io/machine-learning-notebooks/pages/basics_NLTK.html"
+    />
+    <meta
+      name="title"
+      property="og:title"
+      content="Basics [NLTK] >> Machine Learning Notebooks | Diego Inácio"
+    />
+    <meta
+      name="description"
+      property="og:description"
+      content="Basics aspects of Natural Language Toolkit."
+    />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://diegoinacio.github.io/machine-learning-notebooks/images/thumb_basics_NLTK.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="article" />
+    <meta property="article:author" content="Diego Inácio" />
+    <meta property="article:section" content="Machine Learning Notebooks" />
+    <!-- /! custom meta tags -->
+    <!-- ! custom notebook style -->
+    <link rel="stylesheet" href="../assets/css/notebook.css" />
+    <!-- /! custom notebook style -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <style type="text/css">
+      .bp3-dialog-container.bp3-overlay-enter-active > .bp3-dialog,
+      .bp3-dialog-container.bp3-overlay-appear-active > .bp3-dialog {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition-property: opacity, -webkit-transform;
+        transition-property: opacity, -webkit-transform;
+        transition-property: opacity, transform;
+        transition-property: opacity, transform, -webkit-transform;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+        -webkit-transition-timing-function: cubic-bezier(
+          0.54,
+          1.12,
+          0.38,
+          1.11
+        );
+        transition-timing-function: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+      }
+
+      .bp3-dialog-container.bp3-overlay-exit-active > .bp3-dialog {
+        opacity: 0;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-transition-property: opacity, -webkit-transform;
+        transition-property: opacity, -webkit-transform;
+        transition-property: opacity, transform;
+        transition-property: opacity, transform, -webkit-transform;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+        -webkit-transition-timing-function: cubic-bezier(
+          0.54,
+          1.12,
+          0.38,
+          1.11
+        );
+        transition-timing-function: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+      }
+
+      .bp3-control.bp3-radio input:checked ~ .bp3-control-indicator::before {
+        background-image: radial-gradient(
+          #ffffff,
+          #ffffff 28%,
+          transparent 32%
+        );
+      }
+
+      .bp3-popover-enter-active > .bp3-popover,
+      .bp3-popover-appear-active > .bp3-popover {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform, -webkit-transform;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+        -webkit-transition-timing-function: cubic-bezier(
+          0.54,
+          1.12,
+          0.38,
+          1.11
+        );
+        transition-timing-function: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+      }
+
+      .bp3-popover-exit-active > .bp3-popover {
+        -webkit-transform: scale(0.3);
+        transform: scale(0.3);
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform, -webkit-transform;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+        -webkit-transition-timing-function: cubic-bezier(
+          0.54,
+          1.12,
+          0.38,
+          1.11
+        );
+        transition-timing-function: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+      }
+
+      .bp3-toast.bp3-toast-enter-active,
+      .bp3-toast.bp3-toast-appear-active {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform, -webkit-transform;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+        -webkit-transition-timing-function: cubic-bezier(
+          0.54,
+          1.12,
+          0.38,
+          1.11
+        );
+        transition-timing-function: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+      }
+
+      .bp3-toast.bp3-toast-enter-active ~ .bp3-toast,
+      .bp3-toast.bp3-toast-appear-active ~ .bp3-toast {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform, -webkit-transform;
+        -webkit-transition-duration: 300ms;
+        transition-duration: 300ms;
+        -webkit-transition-timing-function: cubic-bezier(
+          0.54,
+          1.12,
+          0.38,
+          1.11
+        );
+        transition-timing-function: cubic-bezier(0.54, 1.12, 0.38, 1.11);
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+      }
+
+      .CodeMirror-selectedtext.cm-searching {
+        background-color: var(
+          --jp-search-selected-match-background-color
+        ) !important;
+        color: var(--jp-search-selected-match-color) !important;
+      }
+    </style>
+
+    <!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML-full,Safe"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+      init_mathjax = function() {
+          if (window.MathJax) {
+          // MathJax loaded
+              MathJax.Hub.Config({
+                  TeX: {
+                      equationNumbers: {
+                      autoNumber: "AMS",
+                      useLabelIds: true
+                      }
+                  },
+                  tex2jax: {
+                      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                      processEscapes: true,
+                      processEnvironments: true
+                  },
+                  displayAlign: 'center',
+                  CommonHTML: {
+                      linebreaks: {
+                      automatic: true
+                      }
+                  },
+                  "HTML-CSS": {
+                      linebreaks: {
+                      automatic: true
+                      }
+                  }
+              });
+
+              MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+          }
+      }
+      init_mathjax();
+    </script>
+    <!-- End of mathjax configuration -->
+  </head>
+  <body
+    class="jp-Notebook"
+    data-jp-theme-light="true"
+    data-jp-theme-name="JupyterLab Light"
+  >
+    <!-- ! custom navbar -->
+    <div class="notebook-navbar">
+      <a href="http://diegoinacio.github.io/machine-learning-notebooks/">
+        Return to <span>Machine Learning Notebooks</span>
+      </a>
+    </div>
+    <!-- /! custom navbar -->
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h1 id="Basics-[NLTK]">
+          Basics [NLTK]<a class="anchor-link" href="#Basics-[NLTK]">¶</a>
+        </h1>
+        <hr />
+        <ul>
+          <li>Author: Diego Inácio</li>
+          <li>
+            GitHub:
+            <a href="https://github.com/diegoinacio">github.com/diegoinacio</a>
+          </li>
+          <li>
+            Notebook:
+            <a
+              href="https://github.com/diegoinacio/machine-learning-notebooks/blob/master/Natural-Language-Processing/basics_NLTK.ipynb"
+              >basics_NLTK.ipynb</a
+            >
+          </li>
+        </ul>
+        <hr />
+        <p>
+          Basics aspects of
+          <a href="https://www.nltk.org/">Natural Language Toolkit</a>.
+        </p>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h1 id="0.-Installation-and-download-data-files">
+          0. Installation and download data files<a
+            class="anchor-link"
+            href="#0.-Installation-and-download-data-files"
+            >¶</a
+          >
+        </h1>
+        <hr />
+        <p>
+          <a
+            href="http://numba.pydata.org/numba-doc/latest/user/installing.html"
+            >Installation</a
+          >
+          command for <em>anaconda</em> and <em>pip</em>:
+        </p>
+
+        <pre><code>$ conda install --channel anaconda nltk</code></pre>
+        <p>or</p>
+
+        <pre><code>$ pip install nltk</code></pre>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <p>
+          To install all the data requirement for NLTK, first define the output
+          directory and download it by running:
+        </p>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">PATH</span> <span class="o">=</span> <span class="s1">'D:/GitHub/machine-learning-notebooks/Natural-Language-Processing/nltk_data'</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PATH</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">download_dir</span><span class="o">=</span><span class="n">PATH</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jp-Cell-outputWrapper">
+        <div class="jp-OutputArea jp-Cell-outputArea">
+          <div class="jp-OutputArea-child">
+            <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+            <div
+              class="jp-RenderedText jp-OutputArea-output"
+              data-mime-type="text/plain"
+            >
+              <pre>
+showing info https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
+</pre
+              >
+            </div>
+          </div>
+
+          <div class="jp-OutputArea-child">
+            <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+            <div
+              class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult"
+              data-mime-type="text/plain"
+            >
+              <pre>True</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h1 id="1.-Tokenize">
+          1. Tokenize<a class="anchor-link" href="#1.-Tokenize">¶</a>
+        </h1>
+        <hr />
+        <p>
+          <em>Tokenization</em> is the process of breaking up a text into pieces
+          of text called <em>Token</em>. Tokenization can happen at several
+          different levels, like: paragraphs, sentences, words, syllables, or
+          phonemes.
+        </p>
+        <p>Given the example text:</p>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s1">'Hello everyone, how are you all? This is an example of text, which will be tokenized in several ways. Thank you!'</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h2 id="1.1.-Tokenize-sentences">
+          1.1. Tokenize sentences<a
+            class="anchor-link"
+            href="#1.1.-Tokenize-sentences"
+            >¶</a
+          >
+        </h2>
+        <hr />
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">sent_tokenize</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jp-Cell-outputWrapper">
+        <div class="jp-OutputArea jp-Cell-outputArea">
+          <div class="jp-OutputArea-child">
+            <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+            <div
+              class="jp-RenderedText jp-OutputArea-output"
+              data-mime-type="text/plain"
+            >
+              <pre>
+Hello everyone, how are you all?
+This is an example of text, which will be tokenized in several ways.
+Thank you!
+</pre
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h2 id="1.2.-Tokenize-words">
+          1.2. Tokenize words<a class="anchor-link" href="#1.2.-Tokenize-words"
+            >¶</a
+          >
+        </h2>
+        <hr />
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jp-Cell-outputWrapper">
+        <div class="jp-OutputArea jp-Cell-outputArea">
+          <div class="jp-OutputArea-child">
+            <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+            <div
+              class="jp-RenderedText jp-OutputArea-output"
+              data-mime-type="text/plain"
+            >
+              <pre>
+Hello
+everyone
+,
+how
+are
+you
+all
+?
+This
+is
+an
+example
+of
+text
+,
+which
+will
+be
+tokenized
+in
+several
+ways
+.
+Thank
+you
+!
+</pre
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h1 id="2.-Penn-Part-of-Speech-Tags">
+          2. Penn Part of Speech Tags<a
+            class="anchor-link"
+            href="#2.-Penn-Part-of-Speech-Tags"
+            >¶</a
+          >
+        </h1>
+        <hr />
+        <p>
+          Alphabetical list of part-of-speech tags used in the Penn Treebank
+          Project.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>number</th>
+              <th>tag</th>
+              <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>CC</td>
+              <td>Coordinating conjunction</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>CD</td>
+              <td>Cardinal number</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>DT</td>
+              <td>Determiner</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>EX</td>
+              <td>Existential there</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>FW</td>
+              <td>Foreign word</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>IN</td>
+              <td>Preposition or subordinating conjunction</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>JJ</td>
+              <td>Adjective</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>JJR</td>
+              <td>Adjective, comparative</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>JJS</td>
+              <td>Adjective, superlative</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>LS</td>
+              <td>List item marker</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>MD</td>
+              <td>Modal</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>NN</td>
+              <td>Noun, singular or mass</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>NNS</td>
+              <td>Noun, plural</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>NNP</td>
+              <td>Proper noun, singular</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>NNPS</td>
+              <td>Proper noun, plural</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>PDT</td>
+              <td>Predeterminer</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>POS</td>
+              <td>Possessive ending</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>PRP</td>
+              <td>Personal pronoun</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>PRP\$</td>
+              <td>Possessive pronoun</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>RB</td>
+              <td>Adverb</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>RBR</td>
+              <td>Adverb, comparative</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>RBS</td>
+              <td>Adverb, superlative</td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>RP</td>
+              <td>Particle</td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>SYM</td>
+              <td>Symbol</td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>TO</td>
+              <td>to</td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>UH</td>
+              <td>Interjection</td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td>VB</td>
+              <td>Verb, base form</td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>VBD</td>
+              <td>Verb, past tense</td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>VBG</td>
+              <td>Verb, gerund or present participle</td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>VBN</td>
+              <td>Verb, past participle</td>
+            </tr>
+            <tr>
+              <td>31</td>
+              <td>VBP</td>
+              <td>Verb, non-3rd person singular present</td>
+            </tr>
+            <tr>
+              <td>32</td>
+              <td>VBZ</td>
+              <td>Verb, 3rd person singular present</td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td>WDT</td>
+              <td>Wh-determiner</td>
+            </tr>
+            <tr>
+              <td>34</td>
+              <td>WP</td>
+              <td>Wh-pronoun</td>
+            </tr>
+            <tr>
+              <td>35</td>
+              <td>WP\$</td>
+              <td>Possessive wh-pronoun</td>
+            </tr>
+            <tr>
+              <td>36</td>
+              <td>WRB</td>
+              <td>Wh-adverb</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">tags</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jp-Cell-outputWrapper">
+        <div class="jp-OutputArea jp-Cell-outputArea">
+          <div class="jp-OutputArea-child">
+            <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+            <div
+              class="jp-RenderedText jp-OutputArea-output"
+              data-mime-type="text/plain"
+            >
+              <pre>
+[('Hello', 'NNP'), ('everyone', 'NN'), (',', ','), ('how', 'WRB'), ('are', 'VBP'), ('you', 'PRP'), ('all', 'DT'), ('?', '.'), ('This', 'DT'), ('is', 'VBZ'), ('an', 'DT'), ('example', 'NN'), ('of', 'IN'), ('text', 'NN'), (',', ','), ('which', 'WDT'), ('will', 'MD'), ('be', 'VB'), ('tokenized', 'VBN'), ('in', 'IN'), ('several', 'JJ'), ('ways', 'NNS'), ('.', '.'), ('Thank', 'NNP'), ('you', 'PRP'), ('!', '.')]
+</pre
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h1 id="3.-Chunking">
+          3. Chunking<a class="anchor-link" href="#3.-Chunking">¶</a>
+        </h1>
+        <hr />
+        <p>
+          <a href="http://www.nltk.org/howto/chunk.html">Chunking</a> uses a
+          special syntax for <em>regular expressions</em> rules that delimit the
+          <a href="https://www.nltk.org/api/nltk.chunk.html">chunks</a>.
+        </p>
+        <p>
+          For the following example, lets find any <em>noun</em> or
+          <em>proper noun</em> (NN, NNS, NNP or NNPS) followed by a punctuation
+          mark.
+        </p>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">rule</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'Chunk: {&lt;NN[SP]*.?&gt;+&lt;.&gt;}'</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">RegexpParser</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+<span class="n">chunk</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+
+<span class="n">chunk</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <p><img src="chunk_tree_temp.png" alt="chunk tree" /></p>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h1 id="4.-Stemming">
+          4. Stemming<a class="anchor-link" href="#4.-Stemming">¶</a>
+        </h1>
+        <hr />
+        <p>
+          <a href="https://www.nltk.org/howto/stem.html">Stemming</a> removes
+          all morphological affixes from words and leaves only the word stem.
+        </p>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'tokenization'</span><span class="p">,</span> <span class="s1">'running'</span><span class="p">,</span> <span class="s1">'pythonic'</span><span class="p">,</span> <span class="s1">'understandable'</span><span class="p">,</span> <span class="s1">'avoidable'</span><span class="p">,</span> <span class="s1">'memorable'</span><span class="p">]</span>
+<span class="n">PS</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1"> -&gt; </span><span class="si">{</span><span class="n">PS</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jp-Cell-outputWrapper">
+        <div class="jp-OutputArea jp-Cell-outputArea">
+          <div class="jp-OutputArea-child">
+            <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+            <div
+              class="jp-RenderedText jp-OutputArea-output"
+              data-mime-type="text/plain"
+            >
+              <pre>
+tokenization -&gt; token
+running -&gt; run
+pythonic -&gt; python
+understandable -&gt; understand
+avoidable -&gt; avoid
+memorable -&gt; memor
+</pre
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+      <div
+        class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput"
+        data-mime-type="text/markdown"
+      >
+        <h1 id="5.-Lemmatization">
+          5. Lemmatization<a class="anchor-link" href="#5.-Lemmatization">¶</a>
+        </h1>
+        <hr />
+        <p>
+          Lemmatization is the process of converting a word to its meaningful
+          base form.
+        </p>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+      <div class="jp-Cell-inputWrapper">
+        <div class="jp-InputArea jp-Cell-inputArea">
+          <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+          <div
+            class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor"
+            data-type="inline"
+          >
+            <div class="CodeMirror cm-s-jupyter">
+              <div class="highlight hl-ipython3">
+                <pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'children'</span><span class="p">,</span> <span class="s1">'feet'</span><span class="p">,</span> <span class="s1">'wolves'</span><span class="p">,</span> <span class="s1">'indices'</span><span class="p">,</span> <span class="s1">'leaves'</span><span class="p">,</span> <span class="s1">'mice'</span><span class="p">,</span> <span class="s1">'phenomena'</span><span class="p">]</span>
+<span class="n">WL</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1"> -&gt; </span><span class="si">{</span><span class="n">WL</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jp-Cell-outputWrapper">
+        <div class="jp-OutputArea jp-Cell-outputArea">
+          <div class="jp-OutputArea-child">
+            <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+            <div
+              class="jp-RenderedText jp-OutputArea-output"
+              data-mime-type="text/plain"
+            >
+              <pre>
+children -&gt; child
+feet -&gt; foot
+wolves -&gt; wolf
+indices -&gt; index
+leaves -&gt; leaf
+mice -&gt; mouse
+phenomena -&gt; phenomenon
+</pre
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
