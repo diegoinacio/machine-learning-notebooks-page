@@ -108,7 +108,7 @@ function show_action(answers, NOTEBOOKS) {
     );
     let STYLES = head.querySelectorAll(":scope style");
     console.log(`N. of style tags: ${chalk.bold.yellow(STYLES.length)}`);
-    STYLES.forEach((style) => {
+    for (style of STYLES) {
       let style_css = utils.parseCSS(style.innerHTML).stylesheet.rules;
       let i = style_css.length;
       while (i--) {
@@ -117,7 +117,7 @@ function show_action(answers, NOTEBOOKS) {
         }
       }
       console.log(`Style rules: ${chalk.bold.yellow(style_css.length)}`);
-    });
+    }
     console.log(); // ? skip a line
   });
 }

@@ -37,7 +37,7 @@ function write_file(file, document, notebook) {
 
 function remove_all_comments(element, regex) {
   // ! Remove all comments inside element based on regex pattern
-  element.childNodes.forEach((node) => {
+  for (node of element.childNodes) {
     // ? Comment type or Node.COMMENT_NODE is 8
     if (node.nodeType === 8) {
       let comment = node.nodeValue.trim();
@@ -45,7 +45,7 @@ function remove_all_comments(element, regex) {
         element.removeChild(node);
       }
     }
-  });
+  }
 }
 
 function deep_property_remove(obj, property) {
@@ -146,6 +146,20 @@ function deep_included(rule, CSS_BASE) {
   return false;
 }
 
+// ! ******** //
+// ! Template //
+// ! ******** //
+
+function check_imported_scripts(SCRIPTS) {
+  // ! Check if any script tag is the necessary
+  for (script of SCRIPTS) {
+    if (script.src === "../assets/template/notebook.js") {
+      return true;
+    }
+  }
+  return false;
+}
+
 module.exports = {
   HTMLtoDOM,
   write_file,
@@ -155,4 +169,5 @@ module.exports = {
   check_imported_style,
   parseCSS,
   deep_included,
+  check_imported_scripts,
 };

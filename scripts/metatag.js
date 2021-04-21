@@ -36,9 +36,9 @@ function execute_action(answers, NOTEBOOKS) {
     utils.remove_all_comments(head, /^\/?! custom meta tags$/);
 
     // * Remove all meta tags from metaData
-    metaData_.forEach((meta) => {
+    for (meta of metaData_) {
       head.removeChild(meta);
-    });
+    }
 
     let tags;
     if (answers.action === "Include") {
@@ -80,13 +80,13 @@ function show_action(answers, NOTEBOOKS) {
 
     // * Show the current notebook
     console.log(chalk.bold.blue(`# ${notebook}`));
-    utils.generate_tags(notebook, bodyData).forEach((meta) => {
+    for (meta of utils.generate_tags(notebook, bodyData)) {
       let color =
         meta === titleHTML || metaHTML.includes(meta)
           ? chalk.bold.green
           : chalk.bold.red;
       console.log(color(meta));
-    });
+    }
     console.log(); // ? skip a line
   });
 }

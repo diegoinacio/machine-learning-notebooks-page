@@ -21,41 +21,66 @@ function execute_action(answers, NOTEBOOKS) {
 
     let body = document.querySelector("body");
 
-    // * Remove comments "custom navbar"
-    body.childNodes.forEach((node) => {
-      // ? Comment type or Node.COMMENT_NODE is 8
-      if (node.nodeType === 8) {
-        let comment = node.nodeValue.trim();
-        let regex = /^\/?! custom navbar$/;
-        if (comment.match(regex)) {
-          body.removeChild(node);
-        }
+    // * Remove custom comments
+    utils.remove_all_comments(body, /^\/?! custom navbar/);
+    utils.remove_all_comments(body, /^\/?! custom footer/);
+    utils.remove_all_comments(body, /^\/?! custom scripts/);
+
+    let NAVBARS = body.querySelectorAll(".notebook-navbar");
+    let FOOTERS = body.querySelectorAll(".notebook-footer");
+    let SCRIPTS = body.querySelectorAll(":scope script");
+
+    // * Remove all
+    for (navbar of NAVBARS) {
+      body.removeChild(navbar);
+    }
+
+    for (footer of FOOTERS) {
+      body.removeChild(footer);
+    }
+
+    for (script of SCRIPTS) {
+      if (script.src === "../assets/template/notebook.js") {
+        body.removeChild(script);
       }
-    });
-
-    let DIVS = body.querySelectorAll(":scope div.notebook-navbar");
-
-    // * Remove all navbar div.notebook-navbar
-    DIVS.forEach((div) => {
-      body.removeChild(div);
-    });
+    }
 
     if (answers.action === "Include") {
       // * Includes
-      let tags = [
+      // ? Navbar
+      let navbar_tags = [
         "<!-- ! custom navbar -->",
-        `<div class="notebook-navbar">`,
-        `<a href="http://diegoinacio.github.io/machine-learning-notebooks/">`,
-        `Return to <span>Machine Learning Notebooks</span>`,
-        `</a>`,
-        `</div>`,
+        `<div class="notebook-navbar"></div>`,
         "<!-- /! custom navbar -->",
       ];
-      let joined_tags = tags.join(" ");
-      let elements = document
+      let joined_navbar_tags = navbar_tags.join(" ");
+      let navbar_elements = document
         .createRange()
-        .createContextualFragment(joined_tags);
-      body.insertBefore(elements, body.childNodes[0]);
+        .createContextualFragment(joined_navbar_tags);
+      body.insertBefore(navbar_elements, body.childNodes[0]);
+      // ? Footer
+      let year_ft = new Date().getFullYear();
+      let footer_tags = [
+        "<!-- ! custom footer -->",
+        `<footer class="notebook-footer"></footer>`,
+        "<!-- /! custom footer -->",
+      ];
+      let joined_footer_tags = footer_tags.join(" ");
+      let footer_elements = document
+        .createRange()
+        .createContextualFragment(joined_footer_tags);
+      body.appendChild(footer_elements);
+      // ? Scripts
+      let scripts_tags = [
+        "<!-- ! custom scripts -->",
+        `<script src="../assets/template/notebook.js"></script>`,
+        "<!-- /! custom scripts -->",
+      ];
+      let joined_scripts_tags = scripts_tags.join(" ");
+      let scripts_elements = document
+        .createRange()
+        .createContextualFragment(joined_scripts_tags);
+      body.appendChild(scripts_elements);
     }
 
     utils.write_file(file, document, notebook);
@@ -77,14 +102,28 @@ function show_action(answers, NOTEBOOKS) {
 
     // * Show the current notebook
     console.log(chalk.bold.blue(`# ${notebook}`));
-    let DIVS = body.querySelectorAll(":scope div.notebook-navbar");
-    let color = DIVS.length >= 1 ? chalk.bold.green : chalk.bold.red;
-    console.log(color(`<div class="notebook-navbar">...</div>`));
+    // ? Navbar
+    let navbar = body.querySelector(".notebook-navbar");
+    let color = navbar ? chalk.bold.green : chalk.bold.red;
+    console.log(color(`<div class="notebook-navbar"></div>`));
+    // ? Footer
+    let footer = body.querySelector(".notebook-footer");
+    color = footer ? chalk.bold.green : chalk.bold.red;
+    console.log(color(`<footer class="notebook-footer"></footer>`));
+    // ? Scripts
+    let SCRIPTS = body.querySelectorAll(":scope script");
+    color = utils.check_imported_scripts(SCRIPTS)
+      ? chalk.bold.green
+      : chalk.bold.red;
+    console.log(
+      color(`<script src="../assets/template/notebook.js"></script>`)
+    );
+
     console.log(); // ? skip a line
   });
 }
 
-function navbar_option(answers, NOTEBOOKS) {
+function template_option(answers, NOTEBOOKS) {
   if (answers.action === "Show") {
     show_action(answers, NOTEBOOKS);
   } else {
@@ -92,4 +131,4 @@ function navbar_option(answers, NOTEBOOKS) {
   }
 }
 
-module.exports = { navbar_option };
+module.exports = { template_option };

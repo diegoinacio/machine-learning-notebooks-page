@@ -6,7 +6,7 @@ const chalk = require("chalk");
 const search = require("./search");
 const metatag = require("./metatag");
 const style = require("./style");
-const navbar = require("./navbar");
+const template = require("./template");
 
 // * Get all notebooks and include the option --all
 const NOTEBOOKS = search.get_notebooks();
@@ -59,9 +59,9 @@ function all_processes() {
 
       // * Includes
       answers.action = "Include";
-      answers.option = "Navbar";
-      console.log(chalk.bold.yellow("Including navbar .."));
-      navbar.navbar_option(answers, NOTEBOOKS);
+      answers.option = "Template";
+      console.log(chalk.bold.yellow("Including template .."));
+      template.template_option(answers, NOTEBOOKS);
       answers.option = "Style";
       console.log(chalk.bold.yellow("Including styles .."));
       style.style_option(answers, NOTEBOOKS);
@@ -79,7 +79,7 @@ function specific_process() {
         type: "select",
         name: "option",
         message: "Select option: ",
-        choices: ["Metatag", "Style", "Navbar"],
+        choices: ["Metatag", "Style", "Template"],
       },
       {
         type: "select",
@@ -106,9 +106,9 @@ function specific_process() {
           // ! Style option selected
           style.style_option(answers, NOTEBOOKS);
           break;
-        case "Navbar":
+        case "Template":
           // ! Style option selected
-          navbar.navbar_option(answers, NOTEBOOKS);
+          template.template_option(answers, NOTEBOOKS);
           break;
         default:
           // ! No option selected
