@@ -50,12 +50,12 @@ function all_processes() {
     .then((answers) => {
       // * Removes
       answers.action = "Remove";
-      answers.option = "Metatag";
-      console.log(chalk.bold.yellow("Removing metatags .."));
-      metatag.metatag_option(answers, NOTEBOOKS);
       answers.option = "Style";
       console.log(chalk.bold.yellow("Removing styles .."));
       style.style_option(answers, NOTEBOOKS);
+      answers.option = "Metatag";
+      console.log(chalk.bold.yellow("Removing metatags .."));
+      metatag.metatag_option(answers, NOTEBOOKS);
 
       // * Includes
       answers.action = "Include";
@@ -67,7 +67,7 @@ function all_processes() {
       style.style_option(answers, NOTEBOOKS);
       answers.option = "Metatag";
       console.log(chalk.bold.yellow("Including metatags .."));
-      metatag.metatag_option(answers, NOTEBOOKS);
+      metatag.metatag_option(answers, NOTEBOOKS, { format: true });
     });
 }
 
@@ -108,7 +108,7 @@ function specific_process() {
           break;
         case "Template":
           // ! Style option selected
-          template.template_option(answers, NOTEBOOKS);
+          navbar.template_option(answers, NOTEBOOKS);
           break;
         default:
           // ! No option selected

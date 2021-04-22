@@ -10,7 +10,7 @@ const utils = require("./utils");
 // ! Get pages directory
 const PAGES_PATH = path.join(__dirname, "../pages/");
 
-function execute_action(answers, NOTEBOOKS) {
+function execute_action(answers, NOTEBOOKS, options = {}) {
   // ! Include or remove all meta tags
   const _NOTEBOOKS = search.filter_notebooks(answers, NOTEBOOKS);
   // * Foreach notebook do ..
@@ -59,7 +59,7 @@ function execute_action(answers, NOTEBOOKS) {
     let elements = document.createRange().createContextualFragment(joined_tags);
     head.insertBefore(elements, head.childNodes[0]);
 
-    utils.write_file(file, document, notebook);
+    utils.write_file(file, document, notebook, options);
   });
 }
 
@@ -91,11 +91,11 @@ function show_action(answers, NOTEBOOKS) {
   });
 }
 
-function metatag_option(answers, NOTEBOOKS) {
+function metatag_option(answers, NOTEBOOKS, options = {}) {
   if (answers.action === "Show") {
     show_action(answers, NOTEBOOKS);
   } else {
-    execute_action(answers, NOTEBOOKS);
+    execute_action(answers, NOTEBOOKS, options);
   }
 }
 

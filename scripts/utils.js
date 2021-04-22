@@ -4,6 +4,7 @@ const jsdom = require("jsdom");
 const css = require("css");
 const chalk = require("chalk");
 const prettier = require("prettier");
+const minify = require("html-minifier").minify;
 
 // ! Init DOM parser
 const DomParser = require("dom-parser");
@@ -23,14 +24,22 @@ function HTMLtoDOM(content) {
   return { HTML, DOM, window, document };
 }
 
-function write_file(file, document, notebook) {
+function write_file(file, document, notebook, options = {}) {
   // ! Write file from document
   let documentHTML = "<!DOCTYPE html>";
   documentHTML += document.documentElement.outerHTML;
-  documentHTML = prettier.format(documentHTML, {
-    parser: "html",
-    tabWidth: 2,
-  });
+  if (options.format) {
+    if (options.prettier) {
+      documentHTML = prettier.format(documentHTML, {
+        parser: "html",
+        tabWidth: 2,
+      });
+    } else {
+      documentHTML = minify(documentHTML, {
+        collapseWhitespace: true,
+      });
+    }
+  }
   fs.writeFileSync(file, documentHTML);
   console.log(chalk.bold.green(`${notebook} was saved!`));
 }

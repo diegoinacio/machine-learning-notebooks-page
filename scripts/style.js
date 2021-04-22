@@ -18,9 +18,9 @@ const content = fs.readFileSync(css_base, "utf8");
 const CSS_BASE = utils.parseCSS(content).stylesheet.rules;
 
 // ! List of rule types
-const RULE_TYPES = ["rule", "media", "font-face", "keyframes"];
+const RULE_TYPES = ["rule", "media", "font-face", "keyframes", "charset"];
 
-function execute_action(answers, NOTEBOOKS) {
+function execute_action(answers, NOTEBOOKS, options = {}) {
   // ! Include or remove notebook style link
   // ! Remove rules which is in the style
   const _NOTEBOOKS = search.filter_notebooks(answers, NOTEBOOKS);
@@ -78,7 +78,7 @@ function execute_action(answers, NOTEBOOKS) {
       }
     }
 
-    utils.write_file(file, document, notebook);
+    utils.write_file(file, document, notebook, options);
   });
 }
 
@@ -122,11 +122,11 @@ function show_action(answers, NOTEBOOKS) {
   });
 }
 
-function style_option(answers, NOTEBOOKS) {
+function style_option(answers, NOTEBOOKS, options = {}) {
   if (answers.action === "Show") {
     show_action(answers, NOTEBOOKS);
   } else {
-    execute_action(answers, NOTEBOOKS);
+    execute_action(answers, NOTEBOOKS, options);
   }
 }
 
