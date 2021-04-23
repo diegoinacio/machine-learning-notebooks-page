@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const css = require("css");
 const chalk = require("chalk");
+const prettier = require("prettier");
 
 // ! Imports
 const search = require("./search");
@@ -15,7 +16,12 @@ const STYLE_PATH = path.join(__dirname, "../assets/css/");
 // ! Parse CSS standard base
 const css_base = path.join(STYLE_PATH, "notebook.css");
 const content = fs.readFileSync(css_base, "utf8");
-const CSS_BASE = utils.parseCSS(content).stylesheet.rules;
+// ? This process guarantees the successful detection of the selectors
+const pretty_content = prettier.format(content, {
+  parser: "css",
+  tabWidth: 2,
+});
+const CSS_BASE = utils.parseCSS(pretty_content).stylesheet.rules;
 
 // ! List of rule types
 const RULE_TYPES = ["rule", "media", "font-face", "keyframes", "charset"];
@@ -63,7 +69,11 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
       // * Removes
       for (let i = STYLES.length - 1; i >= 0; i--) {
         let style = STYLES[i];
-        let P_CSS = utils.parseCSS(style.innerHTML);
+        let style_content = prettier.format(style.innerHTML, {
+          parser: "css",
+          tabWidth: 2,
+        });
+        let P_CSS = utils.parseCSS(style_content);
         let RULES = P_CSS.stylesheet.rules;
         for (let j = RULES.length - 1; j >= 0; j--) {
           let rule = RULES[j];
