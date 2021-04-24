@@ -100,15 +100,15 @@ function specific_process() {
       switch (answers.option) {
         case "Metatag":
           // ! Metatag option selected
-          metatag.metatag_option(answers, NOTEBOOKS);
+          metatag.metatag_option(answers, NOTEBOOKS, { format: true });
           break;
         case "Style":
           // ! Style option selected
-          style.style_option(answers, NOTEBOOKS);
+          style.style_option(answers, NOTEBOOKS, { format: true });
           break;
         case "Template":
           // ! Style option selected
-          navbar.template_option(answers, NOTEBOOKS);
+          navbar.template_option(answers, NOTEBOOKS, { format: true });
           break;
         default:
           // ! No option selected

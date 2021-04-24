@@ -23,20 +23,19 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
       document
     ));
 
-    // * Include new title to meta tag list
-    let metaData_ = Array.from(metaData).concat(title);
-
-    // * Include favicon
-    let link = document.createElement("link");
-    link.outerHTML = `<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />`;
-
     let head = document.querySelector("head");
 
     // * Remove comments "custom meta tags"
     utils.remove_all_comments(head, /^\/?! custom meta tags$/);
 
+    // * Remove all favicon
+    head.querySelectorAll("link[href*=favicon]").forEach((e) => e.remove());
+
+    // * Remove all titles
+    head.querySelectorAll("title").forEach((e) => e.remove());
+
     // * Remove all meta tags from metaData
-    for (meta of metaData_) {
+    for (meta of metaData) {
       head.removeChild(meta);
     }
 
@@ -50,6 +49,7 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
       // * Removes
       tags = [
         "<!-- ! custom meta tags -->",
+        `<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />`,
         `<title>${bodyData.title}</title>`,
         "<!-- /! custom meta tags -->",
       ];
