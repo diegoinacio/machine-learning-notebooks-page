@@ -1,0 +1,258 @@
+export const HEADER = {
+  title: `Machine Learning Notebooks`,
+  description: `A collection of <span class="machine-learning">Machine Learning</span> fundamentals and useful <span class="notebooks">python notebooks</span>.`,
+};
+
+export const INDEX = [
+  // ! Machine Learning Fundamentals
+  {
+    id: "machine-learning-fundamentals",
+    name: "Machine Learning Fundamentals",
+    description:
+      "Walkthrough into the Machine Learning's principles and implementation of the main algorithms from scratch.",
+    notebooks: [
+      {
+        id: "NN_activation_functions",
+        name: "Activation Functions",
+        description:
+          "Brief overview about some of the main activation functions applicable to Neural Networks and Deep Learning system.",
+      },
+      {
+        id: "NN_perceptron",
+        name: "Perceptron",
+        description:
+          "Overview and implementation of the most fundamental Neural Network model.",
+      },
+      {
+        id: "clustering_dbscan",
+        name: "Clustering [DBSCAN]",
+        description:
+          "Overview and implementation of clustering algorithm using the <em>DBSCAN</em> technique.",
+      },
+      {
+        id: "clustering_k-means",
+        name: "Clustering [k-means]",
+        description:
+          "Overview and implementation of clustering algorithm using the <em>k-means</em> technique.",
+      },
+      {
+        id: "kNN_classification",
+        name: "k-NN Classification",
+        description:
+          "Overview and implementation of k-Nearest Neighbor Classification.",
+      },
+      {
+        id: "kNN_regression",
+        name: "k-NN Regression",
+        description:
+          "Overview and implementation of k-Nearest Neighbor regression.",
+      },
+      {
+        id: "regression_linear",
+        name: "Linear Regression",
+        description:
+          "Overview and implementation of Linear Regression analysis.",
+      },
+      {
+        id: "regression_logistic",
+        name: "Logistic Regression",
+        description:
+          "Overview and implementation of Logistic Regression analysis.",
+      },
+      {
+        id: "regression_polynomial",
+        name: "Polynomial Regression",
+        description:
+          "Overview and implementation of Polynomial Regression analysis.",
+      },
+    ],
+  },
+  // ! Deep Learning Models
+  {
+    id: "deep-learning-models",
+    name: "Deep Learning Models",
+    description:
+      "Demonstration and practice of the most popular <em>Deep Learning</em> models.",
+    notebooks: [
+      {
+        id: "basics_PyTorch",
+        name: "Basics [PyTorch]",
+        description: "Basic functions and operations using PyTorch library.",
+      },
+      {
+        id: "basics_TensorFlow",
+        name: "Basics [TensorFlow]",
+        description: "Basic functions and operations using TensorFlow library.",
+      },
+      {
+        id: "perceptron_Keras",
+        name: "Perceptron [Keras]",
+        description:
+          "Implementation of Perceptron model using using Keras library.",
+      },
+      {
+        id: "perceptron_PyTorch",
+        name: "Perceptron [PyTorch]",
+        description:
+          "Implementation of Perceptron model using using PyTorch library.",
+      },
+      {
+        id: "perceptron_TensorFlow",
+        name: "Perceptron [TensorFlow]",
+        description:
+          "Implementation of Perceptron model using using TensorFlow library.",
+      },
+      {
+        id: "MCLR_Keras",
+        name: "Multi-class Logistic Regression [Keras]",
+        description:
+          "Implementation of Multi-class Logistic Regression using Keras library.",
+      },
+      {
+        id: "MCLR_PyTorch",
+        name: "Multi-class Logistic Regression [PyTorch]",
+        description:
+          "Implementation of Multi-class Logistic Regression using PyTorch library.",
+      },
+      {
+        id: "MCLR_TensorFlow",
+        name: "Multi-class Logistic Regression [TensorFlow]",
+        description:
+          "Implementation of Multi-class Logistic Regression using TensorFlow library.",
+      },
+      {
+        id: "neural_network_shallow_Keras",
+        name: "Shallow Neural Network [Keras]",
+        description:
+          "Implementation of Shallow Neural Network using Keras library.",
+      },
+      {
+        id: "neural_network_deep_Keras",
+        name: "Deep Neural Network [Keras]",
+        description:
+          "Implementation of Deep Neural Network using Keras library.",
+      },
+      {
+        id: "convolutional_neural_network_Keras",
+        name: "Convolutional Neural Network [Keras]",
+        description:
+          "Implementation of Convolutional Neural Network using Keras library.",
+      },
+      {
+        id: "autoencoder_Keras",
+        name: "Autoencoder [Keras]",
+        description: "Implementation of Autoencoders using Keras library.",
+      },
+    ],
+  },
+  // ! Practical Applications
+  {
+    id: "practical-applications",
+    name: "Practical Applications",
+    description:
+      "Practical experiments and creative applications using <em>machine learning</em> techniques.",
+    notebooks: [
+      {
+        id: "image_approximation_deepNN",
+        name: "Image Approximation",
+        description:
+          "Image approximation and upscaling interpolation using <em>deep Neural Network</em>.",
+      },
+    ],
+  },
+  // ! Natural Language Processing
+  {
+    id: "natural-language-processing",
+    name: "Natural Language Processing",
+    description:
+      "Everything about <em>Natural Language Processing (NLP)</em> , from fundamental concepts to practical applications.",
+    notebooks: [
+      {
+        id: "basics_NLTK",
+        name: "Basics [NLTK]",
+        description: "Basics aspects of <em>Natural Language Toolkit</em>.",
+      },
+    ],
+  },
+  // ! Mathematical Foundations
+  {
+    id: "mathematical-foundations",
+    name: "Mathematical Foundations",
+    description:
+      "Main mathematical concepts and numerical methods applied to Machine Learning.",
+    notebooks: [
+      {
+        id: "calculus_fourier-series",
+        name: "Calculus - Fourier Series",
+        description: "Brief overview of <em>Fourier series</em>.",
+      },
+      {
+        id: "linear-algebra_vectors",
+        name: "Linear Algebra - Vectors",
+        description: "Linear Algebra topic about <em>Vectors</em>.",
+      },
+      {
+        id: "linear-algebra_matrices",
+        name: "Linear Algebra - Matrices",
+        description: "Linear Algebra topic about <em>Matrices</em>.",
+      },
+      {
+        id: "integration_definite-integral",
+        name: "Numerical Integration",
+        description:
+          "Overview and implementation of some numerical methods for <em>definite integration</em>.",
+      },
+      {
+        id: "root-finding",
+        name: "Numerical Root Finding",
+        description:
+          "Overview and implementation of some numerical methods for <em>root finding</em>.",
+      },
+      {
+        id: "dissimilarity_measures",
+        name: "Dissimilarity Measure",
+        description: "Overview about dissimilarity and distance measure.",
+      },
+      {
+        id: "binomial_distribution",
+        name: "Binomial Distribution",
+        description:
+          "Brief overview about Discrete probability and binomial distribution.",
+      },
+      {
+        id: "z-table",
+        name: "Z Table",
+        description: "Study about standard normal distribution.",
+      },
+    ],
+  },
+  // ! High Performance Computing
+  {
+    id: "high-performance-computing",
+    name: "High Performance Computing",
+    description:
+      "Practices over high performance computing subjects such as parallel computing, gpu programming, code optimization and others.",
+    notebooks: [
+      {
+        id: "basics_Numba",
+        name: "Basics [Numba]",
+        description: "Basic functions and operations using Numba and Python.",
+      },
+      {
+        id: "basics_NumExpr",
+        name: "Basics [NumExpr]",
+        description: "Basic functions and operations using NumExpr and Python.",
+      },
+      {
+        id: "basics_Cython",
+        name: "Basics [Cython]",
+        description: "Basic functions and operations using Cython and Python.",
+      },
+      {
+        id: "basics_F2PY",
+        name: "Basics [F2PY]",
+        description: "Basic functions and operations using F2PY and Python.",
+      },
+    ],
+  },
+];
