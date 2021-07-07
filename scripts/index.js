@@ -108,7 +108,7 @@ function specific_process() {
           break;
         case "Template":
           // ! Style option selected
-          navbar.template_option(answers, NOTEBOOKS, { format: true });
+          template.template_option(answers, NOTEBOOKS, { format: true });
           break;
         default:
           // ! No option selected
