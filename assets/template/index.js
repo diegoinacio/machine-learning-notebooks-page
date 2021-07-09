@@ -1,4 +1,4 @@
-import { HEADER, INDEX } from "../../metadata.js";
+import { HEADER, INDEX } from "../../metadata.mjs";
 
 // ! Build header
 const header = document.querySelector("header#header");
