@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Scripts to deal with notebooks",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "test"
   },
