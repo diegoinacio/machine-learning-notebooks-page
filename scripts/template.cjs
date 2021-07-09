@@ -4,8 +4,8 @@ const fs = require("fs");
 const chalk = require("chalk");
 
 // ! Imports
-const search = require("./search");
-const utils = require("./utils");
+const search = require("./search.cjs");
+const utils = require("./utils.cjs");
 
 // ! Get pages directory
 const PAGES_PATH = path.join(__dirname, "../pages/");
