@@ -28,7 +28,7 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
 
     let NAVBARS = body.querySelectorAll(".notebook-navbar");
     let FOOTERS = body.querySelectorAll(".notebook-footer");
-    let SCRIPTS = body.querySelectorAll(":scope script");
+    let SCRIPTS = body.querySelectorAll(`script[src$="template/notebook.js"]`);
 
     // * Remove all
     for (navbar of NAVBARS) {
@@ -40,9 +40,7 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
     }
 
     for (script of SCRIPTS) {
-      if (script.src === "../assets/template/notebook.js") {
-        body.removeChild(script);
-      }
+      body.removeChild(script);
     }
 
     if (answers.action === "Include") {
