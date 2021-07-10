@@ -73,10 +73,10 @@ function deep_property_remove(obj, property) {
 function generate_tags(notebook, bodyData) {
   // ! Generate all default meta tags
   return [
-    `<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />`,
+    `<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">`,
     `<title>${bodyData.title}</title>`,
     `<meta charset="utf-8">`,
-    `<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
+    `<meta name="viewport" content="width=device-width,initial-scale=1">`,
     `<meta name="author" content="Diego Inácio">`,
     `<meta property="og:url" content="https://diegoinacio.github.io/machine-learning-notebooks-page/pages/${notebook}.html">`,
     `<meta name="title" property="og:title" content="${bodyData.title} >> Machine Learning Notebooks | Diego Inácio">`,
