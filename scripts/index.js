@@ -1,12 +1,16 @@
 // ! Requires
-const enquirer = require("enquirer");
-const chalk = require("chalk");
+import enquirer from "enquirer";
+import chalk from "chalk";
 
 // ! Imports
-const search = require("./search");
-const metatag = require("./metatag");
-const style = require("./style");
-const template = require("./template");
+import search from "./search.cjs";
+import adsense from "./adsense.cjs";
+import analytics from "./analytics.cjs";
+import metatag from "./metatag.cjs";
+import style from "./style.cjs";
+import template from "./template.cjs";
+
+import { INDEX } from "../metadata.mjs";
 
 // * Get all notebooks and include the option --all
 const NOTEBOOKS = search.get_notebooks();
@@ -51,11 +55,17 @@ function all_processes() {
       // * Removes
       answers.action = "Remove";
       answers.option = "Style";
-      console.log(chalk.bold.yellow("Removing styles .."));
+      console.log(chalk.bold.yellow("Removing style .."));
       style.style_option(answers, NOTEBOOKS);
       answers.option = "Metatag";
-      console.log(chalk.bold.yellow("Removing metatags .."));
+      console.log(chalk.bold.yellow("Removing metatag .."));
       metatag.metatag_option(answers, NOTEBOOKS);
+      answers.option = "Analytics";
+      console.log(chalk.bold.yellow("Removing analytics .."));
+      analytics.analytics_option(answers, NOTEBOOKS);
+      answers.option = "AdSense";
+      console.log(chalk.bold.yellow("Removing adsense .."));
+      adsense.adsense_option(answers, NOTEBOOKS);
 
       // * Includes
       answers.action = "Include";
@@ -63,11 +73,17 @@ function all_processes() {
       console.log(chalk.bold.yellow("Including template .."));
       template.template_option(answers, NOTEBOOKS);
       answers.option = "Style";
-      console.log(chalk.bold.yellow("Including styles .."));
+      console.log(chalk.bold.yellow("Including style .."));
       style.style_option(answers, NOTEBOOKS);
       answers.option = "Metatag";
-      console.log(chalk.bold.yellow("Including metatags .."));
+      console.log(chalk.bold.yellow("Including metatag .."));
       metatag.metatag_option(answers, NOTEBOOKS, { format: true });
+      answers.option = "Analytics";
+      console.log(chalk.bold.yellow("Including analytics .."));
+      analytics.analytics_option(answers, NOTEBOOKS, { format: true });
+      answers.option = "AdSense";
+      console.log(chalk.bold.yellow("Including adsense .."));
+      adsense.adsense_option(answers, NOTEBOOKS, { format: true });
     });
 }
 
@@ -79,7 +95,7 @@ function specific_process() {
         type: "select",
         name: "option",
         message: "Select option: ",
-        choices: ["Metatag", "Style", "Template"],
+        choices: ["AdSense", "Analytics", "Metatag", "Style", "Template"],
       },
       {
         type: "select",
@@ -98,6 +114,14 @@ function specific_process() {
     .then((answers) => {
       console.log(answers);
       switch (answers.option) {
+        case "AdSense":
+          // ! AdSense option selected
+          adsense.adsense_option(answers, NOTEBOOKS, { format: true });
+          break;
+        case "Analytics":
+          // ! Analytics option selected
+          analytics.analytics_option(answers, NOTEBOOKS, { format: true });
+          break;
         case "Metatag":
           // ! Metatag option selected
           metatag.metatag_option(answers, NOTEBOOKS, { format: true });
