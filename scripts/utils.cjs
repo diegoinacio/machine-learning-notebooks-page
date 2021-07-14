@@ -66,6 +66,13 @@ function deep_property_remove(obj, property) {
   }
 }
 
+function contains(document, selector, text) {
+  var elements = document.querySelectorAll(selector);
+  return Array.prototype.filter.call(elements, function (element) {
+    return RegExp(text).test(element.textContent);
+  });
+}
+
 // ! ********* //
 // ! Meta tags //
 // ! ********* //
@@ -173,6 +180,7 @@ module.exports = {
   HTMLtoDOM,
   write_file,
   remove_all_comments,
+  contains,
   generate_tags,
   scrap_data,
   check_imported_style,
