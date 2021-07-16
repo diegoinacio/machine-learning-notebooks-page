@@ -67,10 +67,31 @@ function deep_property_remove(obj, property) {
 }
 
 function contains(document, selector, text) {
+  // ! Gets all elements based on its text content
   var elements = document.querySelectorAll(selector);
   return Array.prototype.filter.call(elements, function (element) {
     return RegExp(text).test(element.textContent);
   });
+}
+
+function index_info(INDEX) {
+  // ! Build notebooks info based on INDEX metadata
+  const NOTEBOOKS_INFO = {};
+  for (const [i, s] of INDEX.entries()) {
+    const notebooks = s.notebooks.sort((a, b) => (a.name > b.name && 1) || -1);
+    for (const [j, n] of notebooks.entries()) {
+      NOTEBOOKS_INFO[n.id] = {};
+      NOTEBOOKS_INFO[n.id].section = s.name;
+      NOTEBOOKS_INFO[n.id].section_id = s.id;
+      NOTEBOOKS_INFO[n.id].title = n.name;
+      NOTEBOOKS_INFO[n.id].description = n.description;
+      const before = j ? j - 1 : notebooks.length - 1;
+      NOTEBOOKS_INFO[n.id].before = notebooks[before].id;
+      const after = (j + 1) % notebooks.length;
+      NOTEBOOKS_INFO[n.id].after = notebooks[after].id;
+    }
+  }
+  return NOTEBOOKS_INFO;
 }
 
 // ! ********* //
@@ -181,6 +202,7 @@ module.exports = {
   write_file,
   remove_all_comments,
   contains,
+  index_info,
   generate_tags,
   scrap_data,
   check_imported_style,
