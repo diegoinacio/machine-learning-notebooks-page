@@ -3,18 +3,16 @@ import enquirer from "enquirer";
 import chalk from "chalk";
 
 // ! Imports
-import search from "./search.cjs";
+import utils from "./utils.cjs";
 import adsense from "./adsense.cjs";
 import analytics from "./analytics.cjs";
 import metatag from "./metatag.cjs";
 import style from "./style.cjs";
 import template from "./template.cjs";
 
+// * Get all the notebooks from metadata
 import { INDEX } from "../metadata.mjs";
-
-// * Get all notebooks and include the option --all
-const NOTEBOOKS = search.get_notebooks();
-NOTEBOOKS.splice(0, 0, "--all");
+const NOTEBOOKS = utils.index_info(INDEX);
 
 enquirer
   .prompt([
@@ -48,7 +46,7 @@ function all_processes() {
         name: "notebooks",
         message: "Select notebooks: ",
         limit: 5,
-        choices: NOTEBOOKS.slice(0),
+        choices: ["--all", ...Object.keys(NOTEBOOKS)],
       },
     ])
     .then((answers) => {
@@ -108,7 +106,7 @@ function specific_process() {
         name: "notebooks",
         message: "Select notebooks: ",
         limit: 5,
-        choices: NOTEBOOKS.slice(0),
+        choices: ["--all", ...Object.keys(NOTEBOOKS)],
       },
     ])
     .then((answers) => {

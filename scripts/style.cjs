@@ -6,7 +6,6 @@ const chalk = require("chalk");
 const prettier = require("prettier");
 
 // ! Imports
-const search = require("./search.cjs");
 const utils = require("./utils.cjs");
 
 // ! Get pages directory
@@ -29,7 +28,7 @@ const RULE_TYPES = ["rule", "media", "font-face", "keyframes", "charset"];
 function execute_action(answers, NOTEBOOKS, options = {}) {
   // ! Include or remove notebook style link
   // ! Remove rules which is in the style
-  const _NOTEBOOKS = search.filter_notebooks(answers, NOTEBOOKS);
+  const _NOTEBOOKS = utils.filter_notebooks(answers, NOTEBOOKS);
   _NOTEBOOKS.forEach((notebook) => {
     // * Read html file
     let file = path.join(PAGES_PATH, `${notebook}.html`);
@@ -97,9 +96,10 @@ function show_action(answers, NOTEBOOKS) {
   // ! Check if the link to notebook.css is included
   // ! If yes, its color is green. Otherwise, its color is red.
   // ! Show the number of inner rules of each style tag
-  const _NOTEBOOKS = search.filter_notebooks(answers, NOTEBOOKS);
+  const _NOTEBOOKS = utils.filter_notebooks(answers, NOTEBOOKS);
   // * Foreach notebook do ..
   _NOTEBOOKS.forEach((notebook) => {
+    const data = NOTEBOOKS[notebook];
     // * Read html file
     let file = path.join(PAGES_PATH, `${notebook}.html`);
     let content = fs.readFileSync(file, "utf8");
@@ -108,7 +108,7 @@ function show_action(answers, NOTEBOOKS) {
     let head = document.querySelector("head");
 
     // * Show the current notebook
-    console.log(chalk.bold.blue(`# ${notebook}`));
+    console.log(chalk.bold.blue(`# ${data.title}`));
     let LINKS = head.querySelectorAll(":scope link");
     let color = utils.check_imported_style(LINKS)
       ? chalk.bold.green

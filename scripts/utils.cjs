@@ -94,21 +94,27 @@ function index_info(INDEX) {
   return NOTEBOOKS_INFO;
 }
 
+function filter_notebooks(answers, NOTEBOOKS) {
+  // ! Filter notebook list based on the flag --all
+  const all = answers.notebooks.includes("--all");
+  return all ? Object.keys(NOTEBOOKS) : answers.notebooks;
+}
+
 // ! ********* //
 // ! Meta tags //
 // ! ********* //
 
-function generate_tags(notebook, bodyData) {
+function generate_tags(notebook, data) {
   // ! Generate all default meta tags
   return [
     `<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">`,
-    `<title>${bodyData.title}</title>`,
+    `<title>${data.title} | ${data.section}</title>`,
     `<meta charset="utf-8">`,
     `<meta name="viewport" content="width=device-width,initial-scale=1">`,
     `<meta name="author" content="Diego Inácio">`,
     `<meta property="og:url" content="https://diegoinacio.github.io/machine-learning-notebooks-page/pages/${notebook}.html">`,
-    `<meta name="title" property="og:title" content="${bodyData.title} >> Machine Learning Notebooks | Diego Inácio">`,
-    `<meta name="description" property="og:description" content="${bodyData.description}">`,
+    `<meta name="title" property="og:title" content="${data.title} >> Machine Learning Notebooks | Diego Inácio">`,
+    `<meta name="description" property="og:description" content="${data.description}">`,
     `<meta name="image" property="og:image" content="https://diegoinacio.github.io/machine-learning-notebooks-page/images/thumb_${notebook}.jpg">`,
     `<meta property="og:image:type" content="image/jpeg">`,
     `<meta property="og:type" content="article">`,
@@ -117,32 +123,16 @@ function generate_tags(notebook, bodyData) {
   ];
 }
 
-function scrap_data(document) {
-  // ! Collect all necessary data from document
-  // * Scrap head and get the page's title element
+function scrap_meta(document) {
+  // ! Collect all meta tags
   let head = document.querySelector("head");
-  let title = head.querySelector("title");
-  let titleHTML = title.outerHTML;
 
-  // * Define title text from <h1>
-  let h1_tag = document.querySelector("h1");
-  let h1_title = h1_tag.textContent || h1_tag.innerText;
-  h1_title = h1_title.replace(/¶/g, ""); // ? Remove Pilcrow
-  h1_title = h1_title.trim().replace(/\s\s+/g, " "); // ? Remove extra spaces
-
-  // *  Define description text from <p>
-  let p_tag = document.querySelector("p");
-  let p_description = p_tag.textContent || p_tag.innerText;
-  p_description = p_description.trim().replace(/\s\s+/g, " "); // ? Remove extra spaces
-
-  let bodyData = { title: h1_title, description: p_description };
-  // * Scrap head and get all the meta tags
   let metaData = head.querySelectorAll(":scope meta");
   let metaHTML = Array.from(metaData).map((meta) => {
     return meta.outerHTML;
   });
 
-  return { title, titleHTML, bodyData, metaData, metaHTML };
+  return { metaData, metaHTML };
 }
 
 // ! ***** //
@@ -203,8 +193,9 @@ module.exports = {
   remove_all_comments,
   contains,
   index_info,
+  filter_notebooks,
   generate_tags,
-  scrap_data,
+  scrap_meta,
   check_imported_style,
   parseCSS,
   deep_included,

@@ -4,7 +4,6 @@ const fs = require("fs");
 const chalk = require("chalk");
 
 // ! Imports
-const search = require("./search.cjs");
 const utils = require("./utils.cjs");
 
 // ! Get pages directory
@@ -12,7 +11,7 @@ const PAGES_PATH = path.join(__dirname, "../pages/");
 
 function execute_action(answers, NOTEBOOKS, options = {}) {
   // ! Include or remove navbar
-  const _NOTEBOOKS = search.filter_notebooks(answers, NOTEBOOKS);
+  const _NOTEBOOKS = utils.filter_notebooks(answers, NOTEBOOKS);
   // * Foreach notebook do ..
   _NOTEBOOKS.forEach((notebook) => {
     let file = path.join(PAGES_PATH, `${notebook}.html`);
@@ -89,8 +88,9 @@ function show_action(answers, NOTEBOOKS) {
   // ! Show if notebook has notebook-navbar div
   // ! If color is green, the div already was included
   // ! If color is red, the div does not exist yet
-  const _NOTEBOOKS = search.filter_notebooks(answers, NOTEBOOKS);
+  const _NOTEBOOKS = utils.filter_notebooks(answers, NOTEBOOKS);
   _NOTEBOOKS.forEach((notebook) => {
+    const data = NOTEBOOKS[notebook];
     // * Read html file
     let file = path.join(PAGES_PATH, `${notebook}.html`);
     let content = fs.readFileSync(file, "utf8");
@@ -99,7 +99,7 @@ function show_action(answers, NOTEBOOKS) {
     let body = document.querySelector("body");
 
     // * Show the current notebook
-    console.log(chalk.bold.blue(`# ${notebook}`));
+    console.log(chalk.bold.blue(`# ${data.title}`));
     // ? Navbar
     let navbar = body.querySelector(".notebook-navbar");
     let color = navbar ? chalk.bold.green : chalk.bold.red;
