@@ -226,32 +226,24 @@ export const INDEX = [
       },
     ],
   },
-  // ! High Performance Computing
+  // ! Tips & Tricks
   {
     id: "high-performance-computing",
-    name: "High Performance Computing",
+    name: "Tips & Tricks",
     description:
-      "Practices over high performance computing subjects such as parallel computing, gpu programming, code optimization and others.",
+      "<p>A gathering of <em>Tips &amp; Tricks</em> involving any supporting information for <em>machine learning</em> in general.</p>",
     notebooks: [
       {
         id: "basics_Numba",
         name: "Basics [Numba]",
-        description: "Basic functions and operations using Numba and Python.",
-      },
-      {
-        id: "basics_NumExpr",
-        name: "Basics [NumExpr]",
-        description: "Basic functions and operations using NumExpr and Python.",
+        description:
+          "Basic functions and high performance operations using Numba and Python.",
       },
       {
         id: "basics_Cython",
         name: "Basics [Cython]",
-        description: "Basic functions and operations using Cython and Python.",
-      },
-      {
-        id: "basics_F2PY",
-        name: "Basics [F2PY]",
-        description: "Basic functions and operations using F2PY and Python.",
+        description:
+          "Basic functions and high performance operations using Cython and Python.",
       },
     ],
   },
