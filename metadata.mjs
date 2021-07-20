@@ -6,7 +6,7 @@ export const HEADER = {
 export const INDEX = [
   // ! Machine Learning Fundamentals
   {
-    id: "machine-learning-fundamentals",
+    id: "Machine-Learning-Fundamentals",
     name: "Machine Learning Fundamentals",
     description:
       "Walkthrough into the Machine Learning's principles and implementation of the main algorithms from scratch.",
@@ -69,7 +69,7 @@ export const INDEX = [
   },
   // ! Deep Learning Models
   {
-    id: "deep-learning-models",
+    id: "Deep-Learning-Models",
     name: "Deep Learning Models",
     description:
       "Demonstration and practice of the most popular <em>Deep Learning</em> models.",
@@ -147,7 +147,7 @@ export const INDEX = [
   },
   // ! Practical Applications
   {
-    id: "practical-applications",
+    id: "Practical-Applications",
     name: "Practical Applications",
     description:
       "Practical experiments and creative applications using <em>machine learning</em> techniques.",
@@ -162,7 +162,7 @@ export const INDEX = [
   },
   // ! Natural Language Processing
   {
-    id: "natural-language-processing",
+    id: "Natural-Language-Processing",
     name: "Natural Language Processing",
     description:
       "Everything about <em>Natural Language Processing (NLP)</em> , from fundamental concepts to practical applications.",
@@ -176,7 +176,7 @@ export const INDEX = [
   },
   // ! Mathematical Foundations
   {
-    id: "mathematical-foundations",
+    id: "Mathematical-Foundations",
     name: "Mathematical Foundations",
     description:
       "Main mathematical concepts and numerical methods applied to Machine Learning.",
@@ -228,7 +228,7 @@ export const INDEX = [
   },
   // ! Tips & Tricks
   {
-    id: "high-performance-computing",
+    id: "Tips-and-Tricks",
     name: "Tips & Tricks",
     description:
       "<p>A gathering of <em>Tips &amp; Tricks</em> involving any supporting information for <em>machine learning</em> in general.</p>",
