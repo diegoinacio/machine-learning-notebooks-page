@@ -77,7 +77,7 @@ function show_action(answers, NOTEBOOKS) {
 
     // * Show the current notebook
     console.log(chalk.bold.blue(`# ${data.title}`));
-    for (meta of utils.generate_tags(notebook, bodyData)) {
+    for (meta of utils.generate_tags(notebook, data)) {
       let color = metaHTML.includes(meta) ? chalk.bold.green : chalk.bold.red;
       console.log(color(meta));
     }
