@@ -5,9 +5,13 @@
     position: absolute;
     right: 0;
     top: 0;
-    mix-blend-mode: screen;
-    color: #000000;
+    color: _palette(bg);
     fill: _palette(accent);
+    transition: _duration(transition-hover);
+  }
+
+  svg:hover {
+    fill: lighten(_palette(accent), 7%);
   }
 
   &:hover .octo-arm {

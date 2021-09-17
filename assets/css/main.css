@@ -3583,9 +3583,14 @@ body.is-preload #header.alt .logo {
   position: absolute;
   right: 0;
   top: 0;
-  mix-blend-mode: screen;
-  color: #000000;
+  color: #252525;
   fill: #6526d9;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.github-corner svg:hover {
+  fill: #7a45de;
 }
 
 .github-corner:hover .octo-arm {
