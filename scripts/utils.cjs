@@ -107,7 +107,8 @@ function filter_notebooks(answers, NOTEBOOKS) {
 function generate_tags(notebook, data) {
   // ! Generate all default meta tags
   return [
-    `<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">`,
+    `<link rel="icon" type="image/svg+xml" href="../favicon.svg" />`,
+    `<link rel="alternate icon" href="../favicon.ico" />`,
     `<title>${data.title} | ${data.section}</title>`,
     `<meta charset="utf-8">`,
     `<meta name="viewport" content="width=device-width,initial-scale=1">`,

@@ -47,7 +47,8 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
       // * Removes
       tags = [
         "<!-- ! custom meta tags -->",
-        `<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />`,
+        `<link rel="icon" type="image/svg+xml" href="../favicon.svg" />`,
+        `<link rel="alternate icon" href="../favicon.ico" />`,
         `<title>${data.title} | ${data.section}</title>`,
         "<!-- /! custom meta tags -->",
       ];
