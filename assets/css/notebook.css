@@ -96,6 +96,12 @@ div#notebook {
   margin-bottom: 2em;
 }
 
+.notebook-footer a {
+  transition: 0.2s;
+  font-weight: bold;
+  color: hsl(261, 70%, 50%);
+}
+
 /* ! ************** */
 /* ! Standard style */
 /* ! ************** */
