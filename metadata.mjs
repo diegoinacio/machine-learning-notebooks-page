@@ -179,7 +179,7 @@ export const INDEX = [
     id: "Mathematical-Foundations",
     name: "Mathematical Foundations",
     description:
-      "Main mathematical concepts and numerical methods applied to Machine Learning.",
+      "Main mathematical concepts applied to <em>Machine Learning</em>.",
     notebooks: [
       {
         id: "calculus_fourier-series",
