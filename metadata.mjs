@@ -197,18 +197,6 @@ export const INDEX = [
         description: "Linear Algebra topic about <em>Matrices</em>.",
       },
       {
-        id: "integration_definite-integral",
-        name: "Numerical Integration",
-        description:
-          "Overview and implementation of some numerical methods for <em>definite integration</em>.",
-      },
-      {
-        id: "root-finding",
-        name: "Numerical Root Finding",
-        description:
-          "Overview and implementation of some numerical methods for <em>root finding</em>.",
-      },
-      {
         id: "dissimilarity_measures",
         name: "Dissimilarity Measure",
         description: "Overview about dissimilarity and distance measure.",
