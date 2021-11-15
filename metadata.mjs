@@ -201,17 +201,6 @@ export const INDEX = [
         name: "Dissimilarity Measure",
         description: "Overview about dissimilarity and distance measure.",
       },
-      {
-        id: "binomial_distribution",
-        name: "Binomial Distribution",
-        description:
-          "Brief overview about Discrete probability and binomial distribution.",
-      },
-      {
-        id: "z-table",
-        name: "Z Table",
-        description: "Study about standard normal distribution.",
-      },
     ],
   },
   // ! Tips & Tricks
