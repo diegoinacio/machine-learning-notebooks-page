@@ -145,7 +145,8 @@ function check_imported_style(LINKS) {
   for (link of LINKS) {
     if (
       link.rel === "stylesheet" &&
-      link.href === "../assets/css/notebook.css"
+      (link.href === "../assets/css/notebook-standard.css" ||
+        link.href === "../assets/css/notebook-custom.css")
     ) {
       return true;
     }

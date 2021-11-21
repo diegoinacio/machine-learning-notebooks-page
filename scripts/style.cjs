@@ -13,14 +13,22 @@ const PAGES_PATH = path.join(__dirname, "../pages/");
 const STYLE_PATH = path.join(__dirname, "../assets/css/");
 
 // ! Parse CSS standard base
-const css_base = path.join(STYLE_PATH, "notebook.css");
-const content = fs.readFileSync(css_base, "utf8");
+const css_standard = path.join(STYLE_PATH, "notebook-standard.css");
+const content_standard = fs.readFileSync(css_standard, "utf8");
+const css_custom = path.join(STYLE_PATH, "notebook-custom.css");
+const content_custom = fs.readFileSync(css_custom, "utf8");
 // ? This process guarantees the successful detection of the selectors
-const pretty_content = prettier.format(content, {
+const pretty_content_standard = prettier.format(content_standard, {
   parser: "css",
   tabWidth: 2,
 });
-const CSS_BASE = utils.parseCSS(pretty_content).stylesheet.rules;
+const CSS_BASE_STANDARD = utils.parseCSS(pretty_content_standard).stylesheet
+  .rules;
+const pretty_content_custom = prettier.format(content_custom, {
+  parser: "css",
+  tabWidth: 2,
+});
+const CSS_BASE_CUSTOM = utils.parseCSS(pretty_content_custom).stylesheet.rules;
 
 // ! List of rule types
 const RULE_TYPES = ["rule", "media", "font-face", "keyframes", "charset"];
@@ -46,7 +54,8 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
     for (link of LINKS) {
       if (
         link.rel === "stylesheet" &&
-        link.href === "../assets/css/notebook.css"
+        (link.href === "../assets/css/notebook-standard.css" ||
+          link.href === "../assets/css/notebook-custom.css")
       ) {
         head.removeChild(link);
       }
@@ -56,7 +65,8 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
       // * Includes
       tags = [
         "\n\n\n<!-- ! custom notebook style -->",
-        `<link rel="stylesheet" href="../assets/css/notebook.css" />`,
+        `<link rel="stylesheet" href="../assets/css/notebook-standard.css" />`,
+        `<link rel="stylesheet" href="../assets/css/notebook-custom.css" />`,
         "<!-- /! custom notebook style -->\n\n\n",
       ];
       let joined_tags = tags.join(" ");
@@ -77,7 +87,11 @@ function execute_action(answers, NOTEBOOKS, options = {}) {
         for (let j = RULES.length - 1; j >= 0; j--) {
           let rule = RULES[j];
           if (RULE_TYPES.includes(rule.type)) {
-            if (utils.deep_included(rule, CSS_BASE)) RULES.splice(j, 1);
+            if (
+              utils.deep_included(rule, CSS_BASE_STANDARD) ||
+              utils.deep_included(rule, CSS_BASE_CUSTOM)
+            )
+              RULES.splice(j, 1);
           } else {
             RULES.splice(j, 1);
           }
@@ -114,7 +128,7 @@ function show_action(answers, NOTEBOOKS) {
       ? chalk.bold.green
       : chalk.bold.red;
     console.log(
-      color(`<link rel="stylesheet" href="../assets/css/notebook.css" />`)
+      color(`<link rel="stylesheet" href="../assets/css/notebook-*.css" />`)
     );
     let STYLES = head.querySelectorAll(":scope style");
     console.log(`N. of style tags: ${chalk.bold.yellow(STYLES.length)}`);
