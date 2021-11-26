@@ -1,13 +1,60 @@
 // ! Navbar
 // * Buttons
 const NAVBAR_SL = ".notebook-navbar";
-const link_navbar = `
-<a class="bt-return" href="http://diegoinacio.github.io/machine-learning-notebooks-page/">
-  Return to <span>Machine Learning Notebooks</span>
-</a>
-`;
 
-document.querySelector(NAVBAR_SL).innerHTML = link_navbar;
+const div_buttons = document.createElement("div");
+div_buttons.className = "navbar-buttons";
+document.querySelector(NAVBAR_SL).appendChild(div_buttons);
+
+let a_button;
+
+// * View Notebooks
+a_button = document.createElement("a");
+
+// ? Find the link of the notebook in the first cell
+const first_cell = document.querySelector("h1").parentNode;
+const notebook_link = first_cell.querySelector("a[href*=\\.ipynb]");
+
+if (notebook_link) {
+  a_button.href = notebook_link.href;
+  a_button.innerHTML = `
+  <i class="fas fa-book-open"></i>
+  <span class="tooltip">
+    View <b>Notebook</b>
+  </span>`;
+  div_buttons.appendChild(a_button);
+}
+
+// * Return to Computer Vision Notebooks
+a_button = document.createElement("a");
+a_button.href =
+  "https://diegoinacio.github.io/machine-learning-notebooks-page/";
+a_button.innerHTML = `
+  <i class="fas fa-robot"></i>
+  <span class="tooltip">
+    Return to <b>Machine Learning Notebooks</b>
+  </span>`;
+div_buttons.appendChild(a_button);
+
+// * Go to Python Notebooks
+a_button = document.createElement("a");
+a_button.href = "https://diegoinacio.github.io/python-notebooks/";
+a_button.innerHTML = `
+  <i class="fab fa-python"></i>
+  <span class="tooltip">
+    Go to <b>Python Notebooks</b>
+  </span>`;
+div_buttons.appendChild(a_button);
+
+// * Visit my personal website
+a_button = document.createElement("a");
+a_button.href = "https://diegoinacio.github.io/";
+a_button.innerHTML = `
+  <i class="fas fa-home"></i>
+  <span class="tooltip">
+    Visit <b>my personal website</b>
+  </span>`;
+div_buttons.appendChild(a_button);
 
 // ! Cells
 // * Copy button
