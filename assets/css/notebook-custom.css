@@ -1,9 +1,21 @@
 @import url("fontawesome-all.min.css");
 
+:root {
+  --hue: 261;
+  --colorA: hsl(var(--hue), 70%, 50%);
+  --colorB: hsla(var(--hue), 70%, 50%, 0.5);
+  --colorC: hsla(var(--hue), 0%, 50%, 0.5);
+  --transition: 0.25s;
+}
+
 /* ! Overrides of notebook CSS for static HTML export */
 body {
   overflow: visible;
   padding: 8px;
+}
+
+h1 {
+  margin-top: 2em !important;
 }
 
 div#notebook {
@@ -43,43 +55,66 @@ div#notebook {
 
 /* ! notebook navbar */
 .notebook-navbar {
+  transition: background-color var(--transition);
   position: fixed;
   left: 0px;
   top: 0px;
   margin: 0;
-  padding: 8px 8px;
   width: 100%;
   border: 0;
   z-index: 999;
-  transition: 0.25s;
-  background-color: hsla(261, 0%, 50%, 0.5);
+  background-color: var(--colorC);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
 
-.notebook-navbar:hover {
-  transition: 0.25s;
-  background-color: hsla(261, 70%, 50%, 0.5);
+.notebook-navbar:hover,
+.notebook-navbar:active {
+  background-color: var(--colorB);
+}
+
+.navbar-buttons {
+  padding: 0.5em 2.5em 0.5em 0;
+  text-align: right;
+  font-size: 1em;
 }
 
 .notebook-navbar a {
-  transition: 0.25s;
+  transition: background-color var(--transition);
+  position: relative;
+  display: inline-block;
   text-decoration: none;
+  font-weight: lighter;
   color: rgba(0, 0, 0, 0.5);
-  font-weight: 600;
+  margin-left: 1em;
 }
 
-.notebook-navbar a:hover {
-  transition: 0.25s;
+.notebook-navbar a:hover,
+.notebook-navbar a:active {
   color: rgba(0, 0, 0, 1);
 }
 
-.notebook-navbar a:before {
-  content: "ᐊ ";
+.notebook-navbar a .tooltip {
+  visibility: hidden;
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  white-space: nowrap;
+
+  /* Position the tooltip */
+  position: absolute;
+  top: 150%;
+  right: 5%;
 }
 
-.notebook-navbar a span {
-  font-weight: 800;
+.notebook-navbar a:hover .tooltip,
+.notebook-navbar a:active .tooltip {
+  visibility: visible;
+}
+
+.notebook-navbar a i {
+  font-size: 1.2em;
 }
 
 /* ! notebook footer */
@@ -93,7 +128,11 @@ div#notebook {
 }
 
 .notebook-footer a {
-  transition: 0.2s;
+  transition: var(--transition);
   font-weight: bold;
-  color: hsl(261, 70%, 50%);
+  color: var(--colorA);
+}
+
+.notebook-footer a:hover {
+  color: black;
 }
