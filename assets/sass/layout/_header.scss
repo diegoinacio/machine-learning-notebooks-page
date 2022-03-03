@@ -18,13 +18,19 @@
     font-size: 1.25em;
     letter-spacing: _font(letter-spacing);
 
-    .notebooks {
+    .stripe {
       border-bottom: 1px dotted _palette(accent);
       background-color: transparentize($color: _palette(accent), $amount: 0.9);
       padding: 0 0.2em 0.2em 0.2em;
     }
 
-    .machine-learning {
+    .emphasis1 {
+      font-style: italic;
+      font-weight: _font(weight-extra-bold);
+      padding: 0 0.2em 0.2em 0.2em;
+    }
+
+    .emphasis2 {
       font-weight: _font(weight-extra-bold);
     }
   }

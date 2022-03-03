@@ -2898,13 +2898,19 @@ table.alt tbody tr td {
   letter-spacing: -0.025em;
 }
 
-#header .description .notebooks {
+#header .description .stripe {
   border-bottom: 1px dotted #6526d9;
   background-color: rgba(101, 38, 217, 0.1);
   padding: 0 0.2em 0.2em 0.2em;
 }
 
-#header .description .machine-learning {
+#header .description .emphasis1 {
+  font-style: italic;
+  font-weight: 600;
+  padding: 0 0.2em 0.2em 0.2em;
+}
+
+#header .description .emphasis2 {
   font-weight: 600;
 }
 
