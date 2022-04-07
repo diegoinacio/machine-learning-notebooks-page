@@ -25,7 +25,7 @@ if (notebook_link) {
   div_buttons.appendChild(a_button);
 }
 
-// * Return to Computer Vision Notebooks
+// * Return to Machine Learning Notebooks
 a_button = document.createElement("a");
 a_button.href =
   "https://diegoinacio.github.io/machine-learning-notebooks-page/";
