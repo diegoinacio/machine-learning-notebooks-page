@@ -25,6 +25,18 @@ if (notebook_link) {
   div_buttons.appendChild(a_button);
 }
 
+// * Report an Issue
+a_button = document.createElement("a");
+a_button.target = "_blank";
+a_button.href =
+  "https://github.com/diegoinacio/machine-learning-notebooks/issues/new";
+a_button.innerHTML = `
+  <i class="fas fa-comment-dots"></i>
+  <span class="tooltip">
+    Report an <b>Issue</b>
+  </span>`;
+div_buttons.appendChild(a_button);
+
 // * Return to Machine Learning Notebooks
 a_button = document.createElement("a");
 a_button.href =
