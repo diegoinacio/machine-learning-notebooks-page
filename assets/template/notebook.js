@@ -26,10 +26,21 @@ if (notebook_link) {
 }
 
 // * Report an Issue
+// ? Get notebook title and section
+const [NB_TITLE, NB_SECTION] = document.head
+  .querySelector("title")
+  .innerText.split(" | ");
+
+// ? Build url to issue page
+let ISSUE_URL =
+  "https://github.com/diegoinacio/machine-learning-notebooks/issues/new";
+ISSUE_URL += `?labels=${NB_SECTION.replace(" ", "+")},from+page`;
+ISSUE_URL += `&title=[${NB_TITLE.replace(" ", "+")}]+Issue+title..`;
+ISSUE_URL += "&body=Put+your+comment+here..";
+
 a_button = document.createElement("a");
 a_button.target = "_blank";
-a_button.href =
-  "https://github.com/diegoinacio/machine-learning-notebooks/issues/new";
+a_button.href = ISSUE_URL;
 a_button.innerHTML = `
   <i class="fas fa-comment-dots"></i>
   <span class="tooltip">
