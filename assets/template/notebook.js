@@ -26,16 +26,37 @@ if (notebook_link) {
 }
 
 // * Report an Issue
+// ? URL Encoding for Special Characters
+const URL_ENCODING = {
+  " ": "%20",
+  "#": "%23",
+  "&": "%26",
+  "+": "%2B",
+  ".": "%2E",
+};
+
 // ? Get notebook title and section
-const [NB_TITLE, NB_SECTION] = document.head
+let [NB_TITLE, NB_SECTION] = document.head
   .querySelector("title")
   .innerText.split(" | ");
+
+NB_TITLE = NB_TITLE.split("");
+NB_TITLE = NB_TITLE.map((e) =>
+  Object.keys(URL_ENCODING).includes(e) ? URL_ENCODING[e] : e
+);
+NB_TITLE = NB_TITLE.join("");
+
+NB_SECTION = NB_SECTION.split("");
+NB_SECTION = NB_SECTION.map((e) =>
+  Object.keys(URL_ENCODING).includes(e) ? URL_ENCODING[e] : e
+);
+NB_SECTION = NB_SECTION.join("");
 
 // ? Build url to issue page
 let ISSUE_URL =
   "https://github.com/diegoinacio/machine-learning-notebooks/issues/new";
-ISSUE_URL += `?labels=${NB_SECTION.replace(" ", "+")},from+page`;
-ISSUE_URL += `&title=[${NB_TITLE.replace(" ", "+")}]+Issue+title..`;
+ISSUE_URL += `?labels=${NB_SECTION},from+page`;
+ISSUE_URL += `&title=[${NB_TITLE}]+Issue+title..`;
 ISSUE_URL += "&body=Put+your+comment+here..";
 
 a_button = document.createElement("a");
