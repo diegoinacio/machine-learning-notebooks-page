@@ -2146,6 +2146,10 @@ input[type="radio"]:focus + label:before {
   color: #4d90c5;
 }
 
+.icon.style5 {
+  color: #ffffff;
+}
+
 @media screen and (max-width: 1680px) {
   .icon.major:before {
     font-size: 5.5rem;
@@ -2720,6 +2724,10 @@ table.alt tbody tr td {
 
 .statistics li.style4 {
   background-color: #4d90c5;
+}
+
+.statistics li.style5 {
+  background-color: #ffffff;
 }
 
 .statistics li strong,

@@ -68,23 +68,23 @@
   }
 
   &.style1 {
-    color: _palette(accent1);
+    color: _palette(grad-color1);
   }
 
   &.style2 {
-    color: _palette(accent2);
+    color: _palette(grad-color2);
   }
 
   &.style3 {
-    color: _palette(accent3);
+    color: _palette(grad-color3);
   }
 
   &.style4 {
-    color: _palette(accent4);
+    color: _palette(grad-color4);
   }
 
   &.style5 {
-    color: _palette(accent5);
+    color: _palette(grad-color5);
   }
 
   @include breakpoint("<=xlarge") {

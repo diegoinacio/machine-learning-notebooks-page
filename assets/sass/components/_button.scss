@@ -82,7 +82,7 @@ button,
     }
 
     &.primary {
-      background-color: _palette(accent);
+      background-color: _palette(accent1);
       color: _palette(invert, bg) !important;
       box-shadow: none;
 
@@ -91,7 +91,7 @@ button,
       }
 
       &:active {
-        background-color: darken(_palette(accent), 20);
+        background-color: darken(_palette(accent1), 20);
       }
 
       &.icon {

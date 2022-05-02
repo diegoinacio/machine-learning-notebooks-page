@@ -150,8 +150,8 @@ input[type="radio"] {
     border-color: _palette($p, border);
 
     &:focus {
-      border-color: _palette(accent);
-      box-shadow: 0 0 0 1px _palette(accent);
+      border-color: _palette(accent1);
+      box-shadow: 0 0 0 1px _palette(accent1);
     }
   }
 
@@ -187,8 +187,8 @@ input[type="radio"] {
 
     &:focus + label {
       &:before {
-        border-color: _palette(accent);
-        box-shadow: 0 0 0 1px _palette(accent);
+        border-color: _palette(accent1);
+        box-shadow: 0 0 0 1px _palette(accent1);
       }
     }
   }

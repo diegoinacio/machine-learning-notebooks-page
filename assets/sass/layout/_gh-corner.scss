@@ -28,13 +28,13 @@
       circle {
         fill: black;
         fill-opacity: 0;
-        stroke: _palette(accent);
+        stroke: _palette(accent1);
         stroke-width: 15px;
         transition: _duration(transition-hover);
       }
 
       path {
-        fill: _palette(accent);
+        fill: _palette(accent1);
         transition: _duration(transition-hover);
       }
 
@@ -44,11 +44,11 @@
         }
 
         circle {
-          stroke: lighten(_palette(accent), 15%);
+          stroke: lighten(_palette(accent1), 15%);
         }
 
         path {
-          fill: lighten(_palette(accent), 15%);
+          fill: lighten(_palette(accent1), 15%);
         }
       }
     }
