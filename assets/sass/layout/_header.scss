@@ -19,7 +19,7 @@
     letter-spacing: _font(letter-spacing);
 
     .stripe {
-      border-bottom: 1px dotted _palette(accent1);
+      border-bottom: 1px dotted _palette(accent2);
       background-color: transparentize($color: _palette(accent1), $amount: 0.9);
       padding: 0 0.2em 0.2em 0.2em;
     }
