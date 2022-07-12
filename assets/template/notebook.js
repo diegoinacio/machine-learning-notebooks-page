@@ -101,7 +101,7 @@ div_buttons.appendChild(a_button);
 
 // * Return to index page
 a_button = document.createElement("a");
-a_button.href = INDEX_PAGE_URL;
+a_button.href = `${INDEX_PAGE_URL}#${SECTION_ID}`;
 a_button.innerHTML = `
   <i class="fas fa-laptop-code"></i>
   <span class="tooltip">
