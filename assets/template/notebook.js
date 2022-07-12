@@ -40,7 +40,7 @@ a_button.innerHTML = `
   </span>`;
 div_buttons.appendChild(a_button);
 
-// * Report an Issue
+// * Issue and idea
 // ? URL Encoding for Special Characters
 const URL_ENCODING = {
   " ": "%20",
@@ -63,9 +63,11 @@ SC_NAME = SC_NAME.map((e) =>
 );
 SC_NAME = SC_NAME.join("");
 
-// ? Build url to issue page
-let ISSUE_URL = `${REPO_URL}/issues/new`;
-ISSUE_URL += `?labels=${SC_NAME},from+page`;
+// * Report an issue
+// ? Build url
+let ISSUE_URL = `${REPO_URL}/discussions/new`;
+ISSUE_URL += `?category=Issues`;
+ISSUE_URL += `&labels=${SC_NAME},from+page`;
 ISSUE_URL += `&title=[${NB_NAME}]+Issue+title..`;
 ISSUE_URL += "&body=Put+your+comment+here..";
 
@@ -76,6 +78,24 @@ a_button.innerHTML = `
   <i class="fas fa-comment-dots"></i>
   <span class="tooltip">
     Report an <b>Issue</b>
+  </span>`;
+div_buttons.appendChild(a_button);
+
+// * Suggest and idea
+// ? Build url
+let IDEA_URL = `${REPO_URL}/discussions/new`;
+IDEA_URL += `?category=Ideas`;
+IDEA_URL += `&labels=${SC_NAME},idea,from+page`;
+IDEA_URL += `&title=[${NB_NAME}]+Idea+title..`;
+IDEA_URL += "&body=Put+your+comment+here..";
+
+a_button = document.createElement("a");
+a_button.target = "_blank";
+a_button.href = IDEA_URL;
+a_button.innerHTML = `
+  <i class="fas fa-lightbulb"></i>
+  <span class="tooltip">
+    Suggest an <b>Idea</b>
   </span>`;
 div_buttons.appendChild(a_button);
 
@@ -96,16 +116,6 @@ a_button.innerHTML = `
   <i class="fab fa-python"></i>
   <span class="tooltip">
     Go to <b>Python Notebooks</b>
-  </span>`;
-div_buttons.appendChild(a_button);
-
-// * Visit my personal website
-a_button = document.createElement("a");
-a_button.href = WEBSITE_URL;
-a_button.innerHTML = `
-  <i class="fas fa-home"></i>
-  <span class="tooltip">
-    Visit <b>my personal website</b>
   </span>`;
 div_buttons.appendChild(a_button);
 
