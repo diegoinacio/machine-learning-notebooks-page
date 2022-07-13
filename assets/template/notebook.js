@@ -144,8 +144,9 @@ const FOOTER_SL = ".notebook-footer";
 let year_ft = new Date().getFullYear();
 let content_footer = `
 <hr>
-<p>© ${year_ft} Diego Inácio.</p>
-<a href="${WEBSITE_URL}" target="_blank">diegoinacio.github.io</a>
+Created with ❤️ by
+<a href="${WEBSITE_URL}" target="_blank" title="personal website">Diego Inácio</a>
+<br><br><p>© ${year_ft} Diego Inácio.</p>
 `;
 
 document.querySelector(FOOTER_SL).innerHTML = content_footer;
