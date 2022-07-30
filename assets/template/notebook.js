@@ -103,7 +103,7 @@ div_buttons.appendChild(a_button);
 a_button = document.createElement("a");
 a_button.href = `${INDEX_PAGE_URL}#${SECTION_ID}`;
 a_button.innerHTML = `
-  <i class="fas fa-laptop-code"></i>
+  <i class="fas fa-robot"></i>
   <span class="tooltip">
     Return to <b>${REPO_NAME}</b>
   </span>`;
@@ -113,7 +113,7 @@ div_buttons.appendChild(a_button);
 a_button = document.createElement("a");
 a_button.href = PN_URL;
 a_button.innerHTML = `
-  <i class="fab fa-python"></i>
+  <i class="fas fa-swatchbook"></i>
   <span class="tooltip">
     Go to <b>Python Notebooks</b>
   </span>`;
