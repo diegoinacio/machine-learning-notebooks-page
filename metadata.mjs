@@ -1,6 +1,6 @@
 export const HEADER = {
   title: `Machine Learning Notebooks`,
-  description: `An authorial collection of fundamental <span class="emphasis1">Python recipes</span> on <span class="stripe"><span class="emphasis2">Machine Learning</span> and <span class="emphasis2">Artificial Intelligence</span></span>.`,
+  description: `An authorial set of fundamental <span class="stripe">Python recipes</span> on <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong>.`,
 };
 
 export const INDEX = [
