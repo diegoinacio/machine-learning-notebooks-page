@@ -91,7 +91,7 @@ footer {
           @if $p == "invert" {
             @include vendor(
               "background-image",
-              "linear-gradient(90deg, #{_palette(grad-color1)}, #{_palette(grad-color2)}, #{_palette(grad-color3)}, #{_palette(grad-color4)})"
+              "linear-gradient(90deg, #{_palette(grad-color1)}, #{_palette(grad-color2)}, #{_palette(grad-color3)}, #{_palette(grad-color4)}, #{_palette(grad-color5)})"
             );
           }
         }

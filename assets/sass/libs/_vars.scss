@@ -30,8 +30,7 @@ $font: (
     monospace,
   ),
   header-title: (
-    "Passion One",
-    cursive,
+    Impact, Haettenschweiler, 'Arial Narrow Bold'
   ),
   weight: 300,
   weight-bold: 400,
@@ -41,14 +40,14 @@ $font: (
 
 // Palette.
 $palette: (
-  bg: #252525,
-  fg: rgba(255, 255, 255, 0.75),
-  fg-bold: #ffffff,
-  fg-light: rgba(255, 255, 255, 0.5),
-  border: rgba(255, 255, 255, 0.35),
-  border-bg: rgba(255, 255, 255, 0.075),
-  border2: rgba(255, 255, 255, 0.75),
-  border2-bg: rgba(255, 255, 255, 0.2),
+  bg: white,
+  fg: black,
+  fg-bold: black,
+  fg-light: black,
+  border: black,
+  border-bg: black,
+  border2: black,
+  border2-bg: black,
   invert: (
     bg: #ffffff,
     bg-alt: #f7f7f7,
@@ -62,9 +61,9 @@ $palette: (
   ),
   accent1: hsl(261, 70%, 50%),
   accent2: hsl(117, 70%, 50%),
-  grad-color1: #8fd863,
-  grad-color2: #f6bf4c,
-  grad-color3: #e250b1,
-  grad-color4: #4d90c5,
-  grad-color5: #ffffff,
+  grad-color1: hsl(117, 70%, 50%),
+  grad-color2: hsl(189, 70%, 50%),
+  grad-color3: hsl(261, 70%, 50%),
+  grad-color4: hsl(333, 70%, 50%),
+  grad-color5: hsl(45, 90%, 50%),
 );

@@ -83,11 +83,12 @@ button,
 
     &.primary {
       background-color: _palette(accent1);
-      color: _palette(invert, bg) !important;
+      color: _palette(bg) !important;
+      font-weight: _font(weight-bold);
       box-shadow: none;
 
       &:hover {
-        background-color: lighten(_palette(bg), 10);
+        background-color: _palette(fg);
       }
 
       &:active {

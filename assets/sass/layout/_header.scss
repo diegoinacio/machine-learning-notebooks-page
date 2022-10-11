@@ -15,35 +15,22 @@
   }
 
   .description {
-    color: transparentize(_palette(fg), 0.4);
     font-size: 1em;
     letter-spacing: _font(letter-spacing);
 
     .stripe {
-      color: transparentize(_palette(fg), 0.2);
-      border-bottom: 1px dotted _palette(accent2);
-      background-color: transparentize(_palette(accent1), 0.9);
+      background-image: linear-gradient(transparent 0.7em, transparentize(_palette(accent1), 0.75) 0.71em);
       padding: 0 0.2em 0.2em 0.2em;
-    }
-
-    .emphasis1 {
-      font-style: italic;
-      font-weight: _font(weight-extra-bold);
-      padding: 0 0.2em 0.2em 0.2em;
-    }
-
-    .emphasis2 {
-      font-weight: _font(weight-extra-bold);
     }
   }
 
   .signature {
     transition: _duration(transition-hover);
-    color: transparentize(_palette(fg), 0.1);
     font-style: italic;
     font-weight: 100;
     font-size: 0.85em;
     letter-spacing: _font(letter-spacing);
+    margin-top: 1em;
 
     .name {
       font-weight: _font(weight-extra-bold);
