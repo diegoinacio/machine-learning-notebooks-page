@@ -6,7 +6,7 @@ header.innerHTML = `<h1 class="title">${HEADER.title}</h1>`;
 header.innerHTML += `<div class="description">${HEADER.description}</div>`;
 header.innerHTML += `
   <div class="signature">
-    Created with ❤️ by <a href="https://diegoinacio.github.io/" class="name" target="_blank">
+    Created with ❤️ by <a href="https://diegoinacio.github.io/" class="name" target="_blank" title="personal website">
       Diego Inácio
     </a>
   </div>
@@ -65,10 +65,12 @@ for (const [i, s] of INDEX.entries()) {
 // ! Build footer
 const YEAR_FOOTER = new Date().getFullYear();
 const PAGE_LINK = "diegoinacio.github.io";
+const GH_LINK = "github.com/diegoinacio";
 
 document.querySelector("footer#footer").innerHTML = `
   <p class="copyright">
-    © ${YEAR_FOOTER} Diego Inácio. <br />
-    <a href="https://${PAGE_LINK}/" target="_blank">${PAGE_LINK}</a>
+    © ${YEAR_FOOTER} Diego Inácio. <br/><br/>
+    <a href="https://${PAGE_LINK}/" target="_blank" title="personal website">${PAGE_LINK}</a> <br/>
+    <a href="https://${GH_LINK}/" target="_blank" title="GitHub">${GH_LINK}</a>
   </p>
 `;
