@@ -26,7 +26,10 @@ main.innerHTML = "";
 for (const [i, s] of INDEX.entries()) {
   // * Include section to navigation bar
   const active = !i ? "class=active" : "";
-  nav_ul.innerHTML += `<li><a href="#${s.id}"${active}>${s.name}</a></li>`;
+  const index = `<span class="index">${i + 1}.</span>`;
+  const title = `${index} ${s.name}`;
+  const link = `<a href="#${s.id}"${active}>${title}</a>`;
+  nav_ul.innerHTML += `<li>${link}</li>`;
 
   // ! Build section
   const section = document.createElement("section");
@@ -39,7 +42,7 @@ for (const [i, s] of INDEX.entries()) {
   header.className = "major";
   section.appendChild(header);
 
-  header.innerHTML += `<h2>${s.name}</h2>`;
+  header.innerHTML += `<h2>${title}</h2>`;
   header.innerHTML += `<p>${s.description}</p>`;
 
   // * Include notebooks
