@@ -51,13 +51,25 @@
         box-shadow: inset 0 0 0 1px transparent;
         font-weight: _font(weight-bold);
 
+        .index {
+          color: _palette(invert, fg-alt);
+        }
+
         &:hover {
           background-color: _palette(invert, border-bg);
+
+          .index {
+            color: _palette(accent2);
+          }
         }
 
         &.active {
           background-color: _palette(invert, bg);
           box-shadow: none;
+
+          .index {
+            color: _palette(accent1);
+          }
         }
       }
     }

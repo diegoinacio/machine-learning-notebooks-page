@@ -2168,6 +2168,9 @@ section.special header.major h2:after, article.special header.major h2:after {
   margin-left: auto;
   margin-right: auto;
 }
+header.major h2 .index {
+  color: #b3b3b3;
+}
 header.major p {
   font-size: 1.25em;
   letter-spacing: -0.025em;
@@ -2684,12 +2687,21 @@ body.is-preload #header.alt .logo {
   box-shadow: inset 0 0 0 1px transparent;
   font-weight: 400;
 }
+#nav ul li a .index {
+  color: #b3b3b3;
+}
 #nav ul li a:hover {
   background-color: rgba(222, 222, 222, 0.25);
+}
+#nav ul li a:hover .index {
+  color: hsl(117deg, 70%, 50%);
 }
 #nav ul li a.active {
   background-color: #ffffff;
   box-shadow: none;
+}
+#nav ul li a.active .index {
+  color: hsl(261deg, 70%, 50%);
 }
 #nav.alt {
   position: fixed;
