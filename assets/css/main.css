@@ -2312,6 +2312,10 @@ table.alt tbody tr td {
   font-weight: 800;
   margin-left: 0.25rem;
 }
+.features li h3 .index {
+  font-weight: 400;
+  color: #b3b3b3;
+}
 .features li p {
   text-align: start;
   margin: auto 0.1rem auto 0.5rem;

@@ -24,8 +24,13 @@
     }
 
     h3 {
-      font-weight: _font(weight-bold) * 2;
+      font-weight: _font(weight-bold)*2;
       margin-left: 0.25rem;
+
+      .index {
+        font-weight: _font(weight-bold);
+        color: _palette(invert, fg-alt);
+      }
     }
 
     p {
