@@ -53,8 +53,10 @@ for (const [i, s] of INDEX.entries()) {
   const notebooks = s.notebooks.sort((a, b) => (a.name > b.name && 1) || -1);
   for (const [j, n] of notebooks.entries()) {
     const li = document.createElement("li");
+    const subindex = `<span class="index">${i + 1}.${j + 1}.</span>`;
+    const subtitle = `${subindex} ${n.name}`;
     li.innerHTML += `<img src="images/thumb_${n.id}.jpg" alt="${n.name}" />`;
-    li.innerHTML += `<h3>${n.name}</h3>`;
+    li.innerHTML += `<h3>${subtitle}</h3>`;
     li.innerHTML += `<p>${n.description}</p>`;
     li.innerHTML += `
       <a href="pages/${n.id}.html" target="_blank" class="button primary fit">
