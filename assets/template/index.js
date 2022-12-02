@@ -79,3 +79,18 @@ document.querySelector("footer#footer").innerHTML = `
     <a href="https://${GH_LINK}/" target="_blank" title="GitHub">${GH_LINK}</a>
   </p>
 `;
+
+// ! Build Ko-fi button
+const kofi_button = document.getElementById("kofi-button-container");
+kofiwidget2.init("Support this project", "#000", "K3K3GHK2Z");
+kofi_button.innerHTML = kofiwidget2.getHTML();
+
+// * close button
+const kofi_button_x = document.createElement("span");
+kofi_button_x.id = "close";
+kofi_button.appendChild(kofi_button_x);
+kofi_button_x.innerText = "x";
+
+kofi_button_x.addEventListener("click", () => {
+  kofi_button.style.display = "none";
+});
