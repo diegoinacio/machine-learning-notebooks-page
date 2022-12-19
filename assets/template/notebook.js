@@ -119,6 +119,42 @@ a_button.innerHTML = `
   </span>`;
 div_buttons.appendChild(a_button);
 
+// ! Headings
+const Hs = document.querySelectorAll("h2,h3,h4,h5");
+
+let h2_count, h3_count, h4_count, h5_count;
+h2_count = h3_count = h4_count = h5_count = 0;
+
+for (const e of Hs) {
+  let index = "";
+
+  if (e.nodeName === "H2") {
+    h2_count++;
+    index = `${h2_count}.`;
+    h3_count = h4_count = h5_count = 0;
+  }
+
+  if (e.nodeName === "H3") {
+    h3_count++;
+    index = `${h2_count}.${h3_count}.`;
+    h4_count = h5_count = 0;
+  }
+
+  if (e.nodeName === "H4") {
+    h4_count++;
+    index = `${h2_count}.${h3_count}.${h4_count}.`;
+    h5_count = 0;
+  }
+
+  if (e.nodeName === "H5") {
+    h5_count++;
+    index = `${h2_count}.${h3_count}.${h4_count}.${h5_count}.`;
+  }
+
+  index = `<span class="INDEX-${e.nodeName}">${index}</span>`;
+  e.innerHTML = `${index} ${e.innerText}`;
+}
+
 // ! Cells
 // * Copy button
 const PY_CELL_SL = ".highlight.hl-ipython3 pre";

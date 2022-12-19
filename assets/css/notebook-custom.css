@@ -117,6 +117,12 @@ div#notebook {
   font-size: 1.2em;
 }
 
+/* ! Headings */
+[class^=INDEX-H] {
+  color: gray;
+  font-weight: lighter;
+}
+
 /* ! notebook Ko-fi */
 .notebook-kofi {
   position: fixed;
