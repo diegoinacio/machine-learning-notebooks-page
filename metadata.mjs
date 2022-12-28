@@ -211,6 +211,12 @@ export const INDEX = [
       "<p>A gathering of <em>Tips &amp; Tricks</em> involving any supporting information for <em>machine learning</em> in general.</p>",
     notebooks: [
       {
+        id: "connect_openai_api",
+        name: "Connect to OpenAI API",
+        description:
+          "Step by step how to connect to <strong>OpenAI API</strong> and brief introduction.",
+      },
+      {
         id: "basics_Numba",
         name: "Basics [Numba]",
         description:
