@@ -119,6 +119,16 @@ a_button.innerHTML = `
   </span>`;
 div_buttons.appendChild(a_button);
 
+// * Support this project
+a_button = document.createElement("a");
+a_button.href = "https://ko-fi.com/diegoinacio";
+a_button.innerHTML = `
+  <i class="fas fa-heart"></i>
+  <span class="tooltip">
+    <b>Support</b> this project
+  </span>`;
+div_buttons.appendChild(a_button);
+
 // ! Headings
 const Hs = document.querySelectorAll("h2,h3,h4,h5");
 
