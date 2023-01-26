@@ -211,6 +211,12 @@ export const INDEX = [
       "<p>A gathering of <em>Tips &amp; Tricks</em> involving any supporting information for <em>machine learning</em> in general.</p>",
     notebooks: [
       {
+        id: "kaggle-data",
+        name: "Kaggle data",
+        description:
+          "Methods to obtain datasets from the <em>Kaggle</em> platform.",
+      },
+      {
         id: "connect_openai_api",
         name: "Connect to OpenAI API",
         description:
