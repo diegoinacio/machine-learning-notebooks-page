@@ -2518,6 +2518,7 @@ table.alt tbody tr td {
   letter-spacing: -0.025em;
 }
 #header .description .stripe {
+  font-weight: normal;
   background-image: linear-gradient(transparent 0.7em, rgba(101, 38, 217, 0.25) 0.71em);
   padding: 0 0.2em 0.2em 0.2em;
 }

@@ -19,6 +19,7 @@
     letter-spacing: _font(letter-spacing);
 
     .stripe {
+      font-weight: normal;
       background-image: linear-gradient(transparent 0.7em, transparentize(_palette(accent1), 0.75) 0.71em);
       padding: 0 0.2em 0.2em 0.2em;
     }
