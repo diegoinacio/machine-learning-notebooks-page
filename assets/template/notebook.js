@@ -24,21 +24,25 @@
 
 // ! Navbar buttons
 const NAVBAR_SL = ".notebook-navbar";
+const navbar_div = document.querySelector(NAVBAR_SL);
+
 const div_buttons = document.createElement("div");
 div_buttons.className = "navbar-buttons";
-document.querySelector(NAVBAR_SL).appendChild(div_buttons);
+navbar_div.appendChild(div_buttons);
 
-let a_button;
+let div_button;
 
 // * View Notebooks
-a_button = document.createElement("a");
-a_button.href = NOTEBOOK_URL;
-a_button.innerHTML = `
+div_button = document.createElement("div");
+div_button.className = "div-button";
+div_button.innerHTML = `
+<a href="${NOTEBOOK_URL}">
   <i class="fas fa-book-open"></i>
   <span class="tooltip">
     View <b>Notebook</b>
-  </span>`;
-div_buttons.appendChild(a_button);
+  </span>
+</a>`;
+div_buttons.appendChild(div_button);
 
 // * Issue and idea
 // ? URL Encoding for Special Characters
@@ -71,17 +75,18 @@ ISSUE_URL += `&labels=${SC_NAME},from+page`;
 ISSUE_URL += `&title=[${NB_NAME}]+Issue+title..`;
 ISSUE_URL += "&body=Put+your+comment+here..";
 
-a_button = document.createElement("a");
-a_button.target = "_blank";
-a_button.href = ISSUE_URL;
-a_button.innerHTML = `
+div_button = document.createElement("div");
+div_button.className = "div-button";
+div_button.innerHTML = `
+<a href="${ISSUE_URL}" target="_blank">
   <i class="fas fa-comment-dots"></i>
   <span class="tooltip">
     Report an <b>Issue</b>
-  </span>`;
-div_buttons.appendChild(a_button);
+  </span>
+</a>`;
+div_buttons.appendChild(div_button);
 
-// * Suggest and idea
+// * Suggest an idea
 // ? Build url
 let IDEA_URL = `${REPO_URL}/discussions/new`;
 IDEA_URL += `?category=Ideas`;
@@ -89,45 +94,52 @@ IDEA_URL += `&labels=${SC_NAME},idea,from+page`;
 IDEA_URL += `&title=[${NB_NAME}]+Idea+title..`;
 IDEA_URL += "&body=Put+your+comment+here..";
 
-a_button = document.createElement("a");
-a_button.target = "_blank";
-a_button.href = IDEA_URL;
-a_button.innerHTML = `
+div_button = document.createElement("div");
+div_button.className = "div-button";
+div_button.innerHTML = `
+<a href="${IDEA_URL}" target="_blank">
   <i class="fas fa-lightbulb"></i>
   <span class="tooltip">
     Suggest an <b>Idea</b>
-  </span>`;
-div_buttons.appendChild(a_button);
+  </span>
+</a>`;
+div_buttons.appendChild(div_button);
 
 // * Return to index page
-a_button = document.createElement("a");
-a_button.href = `${INDEX_PAGE_URL}#${SECTION_ID}`;
-a_button.innerHTML = `
-  <i class="fas fa-robot"></i>
+div_button = document.createElement("div");
+div_button.className = "div-button";
+div_button.innerHTML = `
+<a href="${INDEX_PAGE_URL}#${SECTION_ID}">
+  <i class="fas fa-laptop-code"></i>
   <span class="tooltip">
     Return to <b>${REPO_NAME}</b>
-  </span>`;
-div_buttons.appendChild(a_button);
+  </span>
+</a>`;
+div_buttons.appendChild(div_button);
 
 // * Go to Python Notebooks
-a_button = document.createElement("a");
-a_button.href = PN_URL;
-a_button.innerHTML = `
+div_button = document.createElement("div");
+div_button.className = "div-button";
+div_button.innerHTML = `
+<a href="${PN_URL}">
   <i class="fas fa-swatchbook"></i>
   <span class="tooltip">
     Go to <b>Python Notebooks</b>
-  </span>`;
-div_buttons.appendChild(a_button);
+  </span>
+</a>`;
+div_buttons.appendChild(div_button);
 
 // * Support this project
-a_button = document.createElement("a");
-a_button.href = "https://ko-fi.com/diegoinacio";
-a_button.innerHTML = `
+div_button = document.createElement("div");
+div_button.className = "div-button";
+div_button.innerHTML = `
+<a href="https://ko-fi.com/diegoinacio">
   <i class="fas fa-heart"></i>
   <span class="tooltip">
     <b>Support</b> this project
-  </span>`;
-div_buttons.appendChild(a_button);
+  </span>
+</a>`;
+div_buttons.appendChild(div_button);
 
 // ! Headings
 const Hs = document.querySelectorAll("h2,h3,h4,h5");
@@ -136,7 +148,8 @@ let h2_count, h3_count, h4_count, h5_count;
 h2_count = h3_count = h4_count = h5_count = 0;
 
 for (const e of Hs) {
-  let index = "";
+  let index = "",
+    text = "";
 
   if (e.nodeName === "H2") {
     h2_count++;
@@ -162,7 +175,8 @@ for (const e of Hs) {
   }
 
   index = `<span class="INDEX-${e.nodeName}">${index}</span>`;
-  e.innerHTML = `${index} ${e.innerText}`;
+  text = e.innerText;
+  e.innerHTML = `${index} ${text}`;
 }
 
 // ! Cells
