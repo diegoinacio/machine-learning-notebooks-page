@@ -11,7 +11,12 @@
 /* ! Overrides of notebook CSS for static HTML export */
 body {
   overflow: visible;
-  padding: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-wrapper {
+  width: 100%;
 }
 
 h1 {
@@ -38,6 +43,11 @@ div#notebook {
   }
 }
 
+.jp-Notebook {
+  margin: 0;
+  padding: 0;
+}
+
 .jp-RenderedImage img,
 .jp-RenderedHTMLCommon img {
   margin-left: auto;
@@ -56,16 +66,15 @@ div#notebook {
 /* ! notebook navbar */
 .notebook-navbar {
   transition: background-color var(--transition);
-  position: fixed;
+  display: flex;
+  position: sticky;
   left: 0px;
   top: 0px;
   margin: 0;
+  padding: 0;
   height: 100%;
-  border: 0;
   z-index: 999;
   background-color: var(--colorC);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .notebook-navbar:hover,
@@ -122,6 +131,49 @@ div#notebook {
   font-size: 1.2em;
 }
 
+.navbar-content-table {
+  padding: 1.5em 0 1.5em 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.25);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  resize: horizontal;
+  width: 12em;
+}
+
+.navbar-content-table div:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-content-table a.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: -0.25em;
+  padding: 0 0.1em 0 0.1em;
+  font-size: 1.5em;
+}
+
+.navbar-content-table a.close:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-content-table a.title {
+  font-weight: 700;
+}
+
+.navbar-content-table a {
+  display: block;
+  padding: 0.25em 1em 0.25em 1em;
+  font-weight: 600;
+
+  /* Text wrap */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 /* ! Headings */
 [class^=INDEX-H] {
   color: gray;
@@ -170,6 +222,7 @@ div#notebook {
 /* ! notebook footer */
 .notebook-footer {
   text-align: center;
+  margin-bottom: 2em;
 }
 
 .notebook-footer hr {

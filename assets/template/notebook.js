@@ -22,6 +22,30 @@
   var NOTEBOOK_URL = `${REPO_URL}/blob/master/${SECTION_ID}/${NOTEBOOK_ID}.ipynb`;
 }
 
+// ! Prebuild and wrap notebook page
+const JP_CELLS = document.querySelectorAll("body > [class*=jp-Cell]");
+const div_jp_wrapper = document.createElement("div");
+div_jp_wrapper.className = "jp-wrapper";
+JP_CELLS[0].before(div_jp_wrapper);
+
+JP_CELLS.forEach((cell) => {
+  div_jp_wrapper.appendChild(cell);
+});
+
+const div_custom_wrapper = document.createElement("div");
+div_custom_wrapper.className = "custom-wrapper";
+div_jp_wrapper.before(div_custom_wrapper);
+div_custom_wrapper.appendChild(div_jp_wrapper);
+
+const div_footer = document.querySelector(".notebook-footer");
+const div_footer_c1 = div_footer.previousSibling;
+const div_footer_c2 = div_footer.nextSibling;
+div_custom_wrapper.appendChild(div_footer_c1);
+div_custom_wrapper.appendChild(div_footer);
+div_custom_wrapper.appendChild(div_footer_c2);
+
+document.body.style = "display: flex";
+
 // ! Navbar buttons
 const NAVBAR_SL = ".notebook-navbar";
 const navbar_div = document.querySelector(NAVBAR_SL);
@@ -31,6 +55,30 @@ div_buttons.className = "navbar-buttons";
 navbar_div.appendChild(div_buttons);
 
 let div_button;
+
+// * Content table
+const close_CT = () => {
+  const ct = document.querySelector(".navbar-content-table");
+  if (ct.style.display === "none") {
+    ct.style.display = "block";
+  } else {
+    ct.style.display = "none";
+  }
+};
+
+div_button = document.createElement("div");
+div_button.className = "div-button";
+div_button.innerHTML = `
+<a role="button" id="ct-button">
+  <i class="fas fa-list"></i>
+  <span class="tooltip">
+    <b>Content table</b>
+  </span>
+</a>
+<hr>`;
+div_buttons.appendChild(div_button);
+
+document.querySelector("#ct-button").addEventListener("click", close_CT);
 
 // * View Notebooks
 div_button = document.createElement("div");
@@ -141,6 +189,38 @@ div_button.innerHTML = `
 </a>`;
 div_buttons.appendChild(div_button);
 
+// ! Navbar content table
+const div_CT = document.createElement("div");
+div_CT.className = "navbar-content-table";
+div_CT.style = "display: none;";
+navbar_div.appendChild(div_CT);
+
+// * Navbar content table close button
+const div_CT_close = document.createElement("div");
+div_CT_close.innerHTML = `<a role="button" class="close">&times;</a>`;
+div_CT.appendChild(div_CT_close);
+
+div_CT_close.addEventListener("click", close_CT);
+
+// * Include title to content table
+const div_ct = document.createElement("div");
+div_CT.append(div_ct);
+
+const h1 = document.querySelector("h1");
+const a_ct = document.createElement("a");
+a_ct.className = "title";
+a_ct.href = `#${h1.id}`;
+a_ct.innerHTML = `${h1.innerText}`;
+div_ct.appendChild(a_ct);
+a_ct.addEventListener("click", (element) => {
+  // * Scroll without anchor on link
+  element.preventDefault();
+  h1.scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
+});
+
 // ! Headings
 const Hs = document.querySelectorAll("h2,h3,h4,h5");
 
@@ -159,24 +239,44 @@ for (const e of Hs) {
 
   if (e.nodeName === "H3") {
     h3_count++;
-    index = `${h2_count}.${h3_count}.`;
+    index = "&nbsp;&nbsp;";
+    index += `${h2_count}.${h3_count}.`;
     h4_count = h5_count = 0;
   }
 
   if (e.nodeName === "H4") {
     h4_count++;
-    index = `${h2_count}.${h3_count}.${h4_count}.`;
+    index = "&nbsp;&nbsp;&nbsp;&nbsp;";
+    index += `${h2_count}.${h3_count}.${h4_count}.`;
     h5_count = 0;
   }
 
   if (e.nodeName === "H5") {
     h5_count++;
-    index = `${h2_count}.${h3_count}.${h4_count}.${h5_count}.`;
+    index = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    index += `${h2_count}.${h3_count}.${h4_count}.${h5_count}.`;
   }
 
   index = `<span class="INDEX-${e.nodeName}">${index}</span>`;
   text = e.innerText;
   e.innerHTML = `${index} ${text}`;
+
+  // * include in content table
+  const div_ct = document.createElement("div");
+  div_CT.append(div_ct);
+
+  const a_ct = document.createElement("a");
+  a_ct.href = `#${e.id}`;
+  a_ct.innerHTML = `${index} ${text}`;
+  div_ct.appendChild(a_ct);
+  a_ct.addEventListener("click", (el) => {
+    // * Scroll without anchor on link
+    el.preventDefault();
+    e.scrollIntoView({
+      block: "start",
+      behavior: "smooth",
+    });
+  });
 }
 
 // ! Cells
