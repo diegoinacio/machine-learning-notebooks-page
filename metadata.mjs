@@ -182,6 +182,12 @@ export const INDEX = [
       "Main mathematical concepts applied to <em>Machine Learning</em>.",
     notebooks: [
       {
+        id: "capital-sigma-notation",
+        name: "Capital-sigma notation",
+        description:
+          "Brief notes and practical examples with the <em>summation</em> operator.",
+      },
+      {
         id: "calculus_fourier-series",
         name: "Calculus - Fourier Series",
         description: "Brief overview of <em>Fourier series</em>.",
