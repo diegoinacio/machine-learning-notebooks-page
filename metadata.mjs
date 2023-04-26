@@ -182,6 +182,12 @@ export const INDEX = [
       "Main mathematical concepts applied to <em>Machine Learning</em>.",
     notebooks: [
       {
+        id: "capital-pi-notation",
+        name: "Capital-pi notation",
+        description:
+          "Brief notes and practical examples with the <em>product</em> operator.",
+      },
+      {
         id: "capital-sigma-notation",
         name: "Capital-sigma notation",
         description:
